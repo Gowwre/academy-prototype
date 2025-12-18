@@ -8,6 +8,8 @@ import Posts from './pages/Posts';
 import PostDetail from './pages/PostDetail';
 import LearningCenter from './pages/LearningCenter';
 
+import PrivacyPolicy from './pages/PrivacyPolicy';
+
 function App() {
   return (
     <BrowserRouter basename="/academy-prototype">
@@ -19,6 +21,7 @@ function App() {
           <Route path="posts" element={<Posts />} />
           <Route path="posts/:id" element={<PostDetail />} />
           <Route path="learning" element={<LearningCenter />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
         </Route>
       </Routes>
     </BrowserRouter>

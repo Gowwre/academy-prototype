@@ -62,7 +62,7 @@ export default function Footer() {
         <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/60 text-xs">© 2023 DJoy Academy. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link className="text-white/60 hover:text-white text-xs transition-colors" to="#">Privacy Policy</Link>
+            <Link className="text-white/60 hover:text-white text-xs transition-colors" to="/privacy-policy">Privacy Policy</Link>
             <Link className="text-white/60 hover:text-white text-xs transition-colors" to="#">Terms of Service</Link>
           </div>
         </div>
