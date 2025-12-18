@@ -6,5 +6,6 @@ export default defineConfig({
   plugins: [react()],
   server: {
     allowedHosts: ['radriars-lair.tail50a8ab.ts.net']
-  }
+  },
+  base: '/academy-prototype'
 })

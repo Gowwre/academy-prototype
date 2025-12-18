@@ -8,14 +8,18 @@ export default {
   theme: {
     extend: {
         colors: {
-            "primary": "#53d22d",
-            "background-light": "#f6f8f6",
-            "background-dark": "#111111", // Deep charcoal for dark mode
-            "surface-dark": "#1a1d1a", // Slightly lighter for cards
-            "card-dark": "#1f251d",
-            "border-dark": "#2d372a",
-            "text-muted": "#a5b6a0",
-            "text-secondary": "#a5b6a0"
+            "primary": "#0959A2", // Blue
+            "secondary": "#E8168C", // Pink
+            "background-light": "#ffffff",
+            "background-dark": "#ffffff", // Mapping to white for migration, will inspect usage
+            "surface-dark": "#f8fafc", // Slate-50
+            "card-dark": "#ffffff",
+            "border-dark": "#e2e8f0", // Slate-200
+            "text-muted": "#64748b", // Slate-500
+            "text-secondary": "#475569" // Slate-600
+        },
+        backgroundImage: {
+            "brand-gradient": "linear-gradient(to right, #0959A2, #E8168C)",
         },
         fontFamily: {
             "display": ["Manrope", "sans-serif"],

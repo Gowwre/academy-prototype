@@ -7,7 +7,7 @@
 
 @layer base {
   body {
-    @apply bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased overflow-x-hidden;
+    @apply bg-white font-display text-slate-900 antialiased overflow-x-hidden;
   }
 }
 
@@ -25,14 +25,14 @@
       width: 8px;
   }
   .custom-scrollbar::-webkit-scrollbar-track {
-      background: #111111; 
+      background: #f1f5f9; 
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #2d372a; 
+      background: #cbd5e1; 
       border-radius: 4px;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #53d22d; 
+      background: #0959A2; 
   }
 }
 
@@ -40,7 +40,7 @@
 .ticker-wrap {
     width: 100%;
     overflow: hidden;
-    @apply bg-primary;
+    @apply bg-brand-gradient;
     padding-left: 100%;
     box-sizing: content-box;
 }
@@ -60,7 +60,7 @@
     padding: 0 2rem;
     font-size: 1rem;
     font-weight: 700;
-    color: #111111;
+    @apply text-white;
 }
 
 @keyframes ticker {
