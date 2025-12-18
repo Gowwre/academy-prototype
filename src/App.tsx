@@ -9,6 +9,7 @@ import PostDetail from './pages/PostDetail';
 import LearningCenter from './pages/LearningCenter';
 
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="posts/:id" element={<PostDetail />} />
           <Route path="learning" element={<LearningCenter />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="terms-of-service" element={<TermsOfService />} />
         </Route>
       </Routes>
     </BrowserRouter>
