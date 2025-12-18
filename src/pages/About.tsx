@@ -46,7 +46,7 @@ export default function About() {
                         </h2>
                         <div className="flex flex-col gap-4 text-slate-600 text-lg leading-relaxed">
                             <p>
-                                Founded in 2018, Elite Pickleball Academy began with a single vision: to professionalize the sport of pickleball. What started as a grassroots initiative on two converted tennis courts has evolved into the nation's premier development center.
+                                Founded in 2018, DJoy Academy began with a single vision: to professionalize the sport of pickleball. What started as a grassroots initiative on two converted tennis courts has evolved into the nation's premier development center.
                             </p>
                             <p>
                                 We saw a gap in the market—passionate players with nowhere to go for serious, data-driven instruction. Our journey has been defined by an unyielding commitment to excellence, investing in top-tier coaching talent and biomechanical analysis technology that was previously reserved for major league sports.

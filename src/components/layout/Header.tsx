@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+import DJoyLogo from '../shared/DJoyLogo';
+
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -17,11 +19,8 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <span className="text-primary material-symbols-outlined !text-4xl">sports_tennis</span>
-            <span className="text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">
-              PICKLEBALL<span className="text-primary">ACADEMY</span>
-            </span>
+          <Link to="/" className="flex items-center">
+            <DJoyLogo size="md" />
           </Link>
           
           {/* Desktop Nav */}

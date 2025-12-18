@@ -1,5 +1,6 @@
 
 import { Link } from 'react-router-dom';
+import DJoyLogo from '../shared/DJoyLogo';
 
 export default function Footer() {
   return (
@@ -7,11 +8,8 @@ export default function Footer() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div>
-            <div className="flex items-center gap-2 mb-6">
-              <span className="text-white material-symbols-outlined !text-3xl">sports_tennis</span>
-              <span className="text-xl font-extrabold tracking-tight text-white">
-                PICKLEBALL<span className="text-white/80">ACADEMY</span>
-              </span>
+            <div className="flex items-center mb-6">
+              <DJoyLogo size="lg" />
             </div>
             <p className="text-white/90 text-sm mb-6">Developing the world's best pickleball athletes through science, discipline, and community.</p>
             <div className="flex gap-4">
@@ -62,7 +60,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/60 text-xs">© 2023 Pickleball Academy. All rights reserved.</p>
+          <p className="text-white/60 text-xs">© 2023 DJoy Academy. All rights reserved.</p>
           <div className="flex gap-6">
             <Link className="text-white/60 hover:text-white text-xs transition-colors" to="#">Privacy Policy</Link>
             <Link className="text-white/60 hover:text-white text-xs transition-colors" to="#">Terms of Service</Link>
