@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import DJoyLogo from '../shared/DJoyLogo';
+import LoginModal from '../auth/LoginModal';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
@@ -49,7 +51,10 @@ export default function Header() {
           </nav>
           
           <div className="flex items-center gap-4">
-            <button className="hidden md:flex min-w-[100px] cursor-pointer items-center justify-center rounded-full h-10 px-6 bg-brand-gradient text-white text-sm font-bold transition-transform hover:scale-105 hover:shadow-lg">
+            <button 
+              onClick={() => setIsLoginModalOpen(true)}
+              className="hidden md:flex min-w-[100px] cursor-pointer items-center justify-center rounded-full h-10 px-6 bg-brand-gradient text-white text-sm font-bold transition-transform hover:scale-105 hover:shadow-lg"
+            >
               Member Login
             </button>
             
@@ -80,12 +85,23 @@ export default function Header() {
                 {link.name}
               </Link>
             ))}
-             <button className="w-full cursor-pointer items-center justify-center rounded-full h-10 px-6 bg-brand-gradient text-white text-sm font-bold">
+             <button 
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setIsLoginModalOpen(true);
+              }}
+              className="w-full cursor-pointer items-center justify-center rounded-full h-10 px-6 bg-brand-gradient text-white text-sm font-bold"
+             >
               Member Login
             </button>
           </nav>
         </div>
       )}
+
+      <LoginModal 
+        isOpen={isLoginModalOpen} 
+        onClose={() => setIsLoginModalOpen(false)} 
+      />
     </header>
   );
 }
