@@ -1,7 +1,7 @@
 
 export default function About() {
   return (
-    <div className="w-full flex justify-center flex-col">
+    <div className="w-full flex justify-center flex-col bg-background-dark min-h-screen">
        {/* Hero Section */}
         <div className="w-full flex justify-center py-5 px-4 md:px-10">
             <div className="flex flex-col max-w-[1120px] w-full">
