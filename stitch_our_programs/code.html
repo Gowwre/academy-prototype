@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pickleball Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#53d22d",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#111111", // Deep charcoal for dark mode
+                        "surface-dark": "#1a1d1a", // Slightly lighter for cards
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111111; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d372a; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #53d22d; 
+        }
+        
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background-color: #53d22d;
+            padding-left: 100%;
+            box-sizing: content-box;
+        }
+
+        .ticker {
+            display: inline-block;
+            height: 3rem;
+            line-height: 3rem;
+            white-space: nowrap;
+            padding-right: 100%;
+            box-sizing: content-box;
+            -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+            -webkit-animation-name: ticker;
+            animation-name: ticker;
+            -webkit-animation-duration: 30s;
+            animation-duration: 30s;
+        }
+
+        .ticker__item {
+            display: inline-block;
+            padding: 0 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #111111;
+        }
+
+        @-webkit-keyframes ticker {
+            0% {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                visibility: visible;
+            }
+            100% {
+                -webkit-transform: translate3d(-100%, 0, 0);
+                transform: translate3d(-100%, 0, 0);
+            }
+        }
+
+        @keyframes ticker {
+            0% {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                visibility: visible;
+            }
+            100% {
+                -webkit-transform: translate3d(-100%, 0, 0);
+                transform: translate3d(-100%, 0, 0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased overflow-x-hidden">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 w-full border-b border-[#2d372a] bg-background-dark/95 backdrop-blur supports-[backdrop-filter]:bg-background-dark/60">
+<div class="container mx-auto px-4 md:px-6">
+<div class="flex h-16 items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-primary material-symbols-outlined !text-4xl">sports_tennis</span>
+<span class="text-xl font-extrabold tracking-tight text-white sm:text-2xl">
+                        PICKLEBALL<span class="text-primary">ACADEMY</span>
+</span>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-gray-300 transition-colors hover:text-primary" href="#">Our Programs</a>
+<a class="text-sm font-medium text-gray-300 transition-colors hover:text-primary" href="#">Alumni Success</a>
+<a class="text-sm font-medium text-gray-300 transition-colors hover:text-primary" href="#">About Us</a>
+<div class="flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-xs font-semibold text-primary uppercase tracking-wider">Field Status: Open</span>
+</div>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex min-w-[100px] cursor-pointer items-center justify-center rounded-full h-10 px-6 bg-primary text-background-dark text-sm font-bold transition-transform hover:scale-105 hover:shadow-[0_0_20px_rgba(83,210,45,0.4)]">
+                        Member Login
+                    </button>
+<!-- Mobile Menu Button -->
+<button class="md:hidden p-2 text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+<!-- Background Image/Video Placeholder -->
+<div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" data-alt="Intense dramatic shot of pickleball player serving on dark court with stadium lighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDRjvf40oYxauAFwuWNkL0fTS_qDWxbc7jtH2z7Um_zh5LdGNwyOL6WpG3Tsd5tiF-VEZqJhiabYmTq6p9W2C1S5j2wcYnJIw6sl5ppFrEiry0o-j6DlyMwrThsqUzZy90T6iOPJSMx5AKrlEWEtWYSnU8FR6FG5vaOGQ5glLQqjFfMGrJUKTWa25yTZzdELqDsWXa75EqMghC2ylv8sKIwEmgkHE1O2cKiRoJ39EFi_xnII01SQqP98ZVdXJtbMoq5yWTDYEdzaWU');">
+<!-- Dark Overlay for text readability -->
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/80 to-transparent"></div>
+<div class="absolute inset-0 bg-black/40"></div>
+</div>
+<div class="container relative z-10 px-4 md:px-6 flex flex-col items-center text-center">
+<div class="inline-flex items-center gap-2 rounded-full bg-primary/20 px-4 py-1.5 text-sm font-medium text-primary mb-6 backdrop-blur-sm border border-primary/20">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+                World-Class Coaching Staff
+            </div>
+<h1 class="max-w-4xl text-5xl font-black leading-tight tracking-tighter text-white sm:text-6xl md:text-7xl lg:text-8xl mb-6 drop-shadow-lg">
+                FORGING THE NEXT <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-green-200">GENERATION OF PROS</span>
+</h1>
+<p class="max-w-2xl text-lg text-gray-300 md:text-xl font-medium mb-10 leading-relaxed">
+                Elite coaching, data-driven training, and a proven pathway to the podium. Join the academy that builds champions.
+            </p>
+<div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+<button class="flex items-center justify-center h-14 px-8 rounded-full bg-primary text-background-dark text-lg font-extrabold tracking-wide transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(83,210,45,0.5)] min-w-[200px]">
+                    REGISTER FOR TRYOUTS
+                </button>
+<button class="flex items-center justify-center h-14 px-8 rounded-full bg-white/10 text-white border border-white/20 text-lg font-bold tracking-wide transition-all hover:bg-white/20 hover:border-white/40 backdrop-blur-sm min-w-[200px]">
+<span class="mr-2 material-symbols-outlined">play_circle</span>
+                    EXPLORE PROGRAMS
+                </button>
+</div>
+</div>
+</section>
+<!-- News Ticker -->
+<div class="ticker-wrap">
+<div class="ticker">
+<div class="ticker__item">🎉 Congratulations to Sarah J. for Gold at Nationals!</div>
+<div class="ticker__item">📢 Fall Tryouts begin Oct 15th — Limited Spots Available</div>
+<div class="ticker__item">🌤️ Outdoor Courts Status: OPEN for Evening Play</div>
+<div class="ticker__item">🏆 New "Elite Masterclass" with Pro John Doe starting next month</div>
+<div class="ticker__item">🎾 Junior Development Squad Registration closes soon</div>
+</div>
+</div>
+<!-- Stats Section -->
+<section class="py-12 bg-surface-dark border-b border-white/5">
+<div class="container mx-auto px-4 md:px-6">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="text-center">
+<p class="text-4xl md:text-5xl font-black text-white mb-2">500<span class="text-primary">k+</span></p>
+<p class="text-sm font-medium text-gray-400 uppercase tracking-widest">Scholarship Funding</p>
+</div>
+<div class="text-center">
+<p class="text-4xl md:text-5xl font-black text-white mb-2">12</p>
+<p class="text-sm font-medium text-gray-400 uppercase tracking-widest">National Titles</p>
+</div>
+<div class="text-center">
+<p class="text-4xl md:text-5xl font-black text-white mb-2">24<span class="text-primary">/7</span></p>
+<p class="text-sm font-medium text-gray-400 uppercase tracking-widest">Facility Access</p>
+</div>
+<div class="text-center">
+<p class="text-4xl md:text-5xl font-black text-white mb-2">100<span class="text-primary">%</span></p>
+<p class="text-sm font-medium text-gray-400 uppercase tracking-widest">Pro Certified Coaches</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Our Programs -->
+<section class="py-20 bg-background-dark relative">
+<div class="container mx-auto px-4 md:px-6">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<div>
+<h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Our Programs</h2>
+<p class="text-gray-400 max-w-lg">Tailored training pathways designed to take athletes from foundational skills to professional competition.</p>
+</div>
+<a class="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all" href="#">
+                    View All Programs <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Program Card 1 -->
+<div class="group relative overflow-hidden rounded-[2rem] bg-surface-dark border border-white/5 hover:border-primary/50 transition-colors duration-300">
+<div class="aspect-[4/3] w-full overflow-hidden">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Young boy focused, hitting a pickleball during practice" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBdOeDj_d0h2xawvDTJ3_JMg9DmIWVSonT7B_LCg7gHRbFu1FV1ow8xnugqSKkA7NF2CIsWyV-lYgq0AWMprenDRcsRv6jInKpr5EHkE7fWRn93J-I-PGCLdls3KBqgvZSpWFOexYww7-63fZv998FyZ_1bJHtgJJl-MLQGGMBLMofBPeVP9gFW0B2nAbRMWYs_4gI1XhLPtWmpW_mUQ7_10_V5FQiU73aGelMpkqemftYq4kKm_2pG9wCfTcce5dP0WQhNsLoz_0E');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
+</div>
+<div class="absolute bottom-0 left-0 w-full p-6">
+<div class="mb-2 inline-flex items-center rounded-full bg-primary/20 px-3 py-1 text-xs font-bold text-primary backdrop-blur-md">
+                            AGES 8-12
+                        </div>
+<h3 class="text-2xl font-bold text-white mb-2">Development Squad</h3>
+<p class="text-gray-300 text-sm mb-4 line-clamp-2">Foundational skills, coordination, and game understanding for young aspiring athletes.</p>
+<span class="inline-flex items-center text-white text-sm font-bold group-hover:text-primary transition-colors">
+                            Learn More <span class="material-symbols-outlined text-sm ml-1">arrow_outward</span>
+</span>
+</div>
+</div>
+<!-- Program Card 2 -->
+<div class="group relative overflow-hidden rounded-[2rem] bg-surface-dark border border-white/5 hover:border-primary/50 transition-colors duration-300">
+<div class="aspect-[4/3] w-full overflow-hidden">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Two athletic players high-fiving after a point" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAyboF-IaOX4Ovfkto2dUg2r_rcKstGdWN8EtrTP23y66JPycWBF0aO-X4zylXvyVb_82adlh7tLyqfOyd9zJmOkOw1OJDnjInCQ40gT8SbtpFNWTAsycJ5pRRlpuXGSpLdVAsB8ICZW0qebwj1KLWZCZu29WoAk3bvGji0ws_r5liKEyUDzJfRfNu7dB5xmW1A_HnPx_IMCSjI-xix3ryaPZR2UC8M_IQH2fyR_PsVdmW-UuA-1HxoiAM7KTbaidKG3NVCfq1Bk1w');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
+</div>
+<div class="absolute bottom-0 left-0 w-full p-6">
+<div class="mb-2 inline-flex items-center rounded-full bg-primary px-3 py-1 text-xs font-bold text-background-dark backdrop-blur-md">
+                            MOST POPULAR
+                        </div>
+<h3 class="text-2xl font-bold text-white mb-2">High Performance</h3>
+<p class="text-gray-300 text-sm mb-4 line-clamp-2">Intense drilling, strategy sessions, and physical conditioning for tournament preparation.</p>
+<span class="inline-flex items-center text-white text-sm font-bold group-hover:text-primary transition-colors">
+                            Learn More <span class="material-symbols-outlined text-sm ml-1">arrow_outward</span>
+</span>
+</div>
+</div>
+<!-- Program Card 3 -->
+<div class="group relative overflow-hidden rounded-[2rem] bg-surface-dark border border-white/5 hover:border-primary/50 transition-colors duration-300">
+<div class="aspect-[4/3] w-full overflow-hidden">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Coach explaining tactics to a player on a clipboard" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB99vJikVg1liGViql88UdRBmLERRbAxPnbW0q537VkJJYgXeWAeo_rPTVA2KOkZVnzSRRXXWJC89TUxU_VjbhNkSqiAtz1zPzmOyobzV1Cr-IrCO0SOVoPRe4yTlvp2OVlrDtvWBtxzCAmGDZdoSVz9rcyfRj7lkZhYBRR6zR_ZmScEgLVgtrxYZvOpefne1m5wztSSOI9C-5EloZWt7eyCbapUzj-qudaFRpLS6R-E4QhbgDgnCPIDDUrpkVPM1SgPK0sYHYS7oU');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
+</div>
+<div class="absolute bottom-0 left-0 w-full p-6">
+<div class="mb-2 inline-flex items-center rounded-full bg-primary/20 px-3 py-1 text-xs font-bold text-primary backdrop-blur-md">
+                            ALL AGES
+                        </div>
+<h3 class="text-2xl font-bold text-white mb-2">Private Instruction</h3>
+<p class="text-gray-300 text-sm mb-4 line-clamp-2">1-on-1 personalized coaching to refine specific mechanics and gameplay weaknesses.</p>
+<span class="inline-flex items-center text-white text-sm font-bold group-hover:text-primary transition-colors">
+                            Learn More <span class="material-symbols-outlined text-sm ml-1">arrow_outward</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Alumni Spotlight -->
+<section class="py-20 bg-surface-dark">
+<div class="container mx-auto px-4 md:px-6">
+<h2 class="text-3xl md:text-4xl font-bold text-white mb-12 text-center">Alumni Success</h2>
+<div class="flex flex-col lg:flex-row gap-8 items-center">
+<!-- Main Spotlight -->
+<div class="w-full lg:w-1/2 relative rounded-[2rem] overflow-hidden group">
+<div class="aspect-[4/3] lg:aspect-square bg-cover bg-center" data-alt="Female pickleball player celebrating a victory with a trophy" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBbBI51u09W7OaEwlz9N4edjZxwkKaQ4LsCyVmmB1gsUB71R5uiMAc2yT-ucQHfhPghSVRMjW7utcSc9nKaNhya3fbA1y6HL1cFPtgOAOvvdyVagIFjbEqb8YMEyb436iPa7AGpVsNNGTMlhqcNXPXFddxyGBiXiT_xFUlngyfLGyp7-f_OKznWUy9WE1AZEZLFq6g8fVTye8b_ZeRHTVvrnOGL4Ye7-t1_gNbjjOFosdX0_ePsS-dhO74P6dqp8N-YUmkrE7qOs2s');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-90"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-bold text-sm tracking-wider uppercase">National Champion</span>
+</div>
+<h3 class="text-3xl md:text-4xl font-black text-white mb-2">JESSICA M.</h3>
+<p class="text-lg text-gray-300 mb-6">Recruited by Top D1 University Program</p>
+<div class="grid grid-cols-3 gap-4 border-t border-white/10 pt-4">
+<div>
+<p class="text-xs text-gray-500 uppercase">Win Rate</p>
+<p class="text-xl font-bold text-white">92%</p>
+</div>
+<div>
+<p class="text-xs text-gray-500 uppercase">Titles</p>
+<p class="text-xl font-bold text-white">14</p>
+</div>
+<div>
+<p class="text-xs text-gray-500 uppercase">Rank</p>
+<p class="text-xl font-bold text-white">#3</p>
+</div>
+</div>
+</div>
+</div>
+<!-- List of others -->
+<div class="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="bg-background-dark p-6 rounded-2xl border border-white/5 hover:border-primary/30 transition-all cursor-pointer">
+<div class="flex items-center gap-4 mb-3">
+<div class="h-12 w-12 rounded-full bg-cover bg-center" data-alt="Portrait of male athlete" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfhQbz6oCWl6vphCvqUHT2dZRMBtwJfoHVpcWZha9HOx8G2_NlnZN5ir_VkDDHjNCLvSKulNqvHn5xTPEYQutc7TfMVN17_3_TvJlICf-P0i2SmZBMGfHIOW-IQa7LYJX2QQH57SVln-U9-kTMG7X7eeNYfCU83Z3wc4BFiBasu62Gc6bcfqrKv-a0hPm7x68PZl37r2UXpe80sq4nG_J467cvZVo7rQKM1r-0vweUXFoURfhAKBKnMgkeqgBRx7ovQqD488Jh6CM')"></div>
+<div>
+<h4 class="font-bold text-white">Michael R.</h4>
+<p class="text-xs text-primary">Pro Tour Debut</p>
+</div>
+</div>
+<p class="text-sm text-gray-400">"The coaching here transformed my backhand and mental game entirely."</p>
+</div>
+<div class="bg-background-dark p-6 rounded-2xl border border-white/5 hover:border-primary/30 transition-all cursor-pointer">
+<div class="flex items-center gap-4 mb-3">
+<div class="h-12 w-12 rounded-full bg-cover bg-center" data-alt="Portrait of female athlete" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB67x0It2z2e4FAasWk-XJ6f5pWrNRz4xdHJ2kGq6De3jTPSxbPzfZ2Ttq_s5i1KzdLdRsEmzi-oD99y6i_JARZ2q2RHjt8mSnQg8korEEhVFb6-ccLL54QaJot0l1-lIbXSBPQS9HeinIJYUchr5emA893mllyZwOUQw7waMOW1GrMDsXbvA1AlKAKML567Bry6HF_0B0nvoFmEbIjyE4FBDuRpgN-R3kG-IDDKFC1kqW1nGgZ06TzJ23FvAAzngyBVTCLhixOCG8')"></div>
+<div>
+<h4 class="font-bold text-white">Sarah K.</h4>
+<p class="text-xs text-primary">Regional Gold</p>
+</div>
+</div>
+<p class="text-sm text-gray-400">"Incredible facilities and a community that pushes you to be your best."</p>
+</div>
+<div class="bg-background-dark p-6 rounded-2xl border border-white/5 hover:border-primary/30 transition-all cursor-pointer">
+<div class="flex items-center gap-4 mb-3">
+<div class="h-12 w-12 rounded-full bg-cover bg-center" data-alt="Portrait of male athlete" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD2stjTW6-woAzmeYdRdn1OdMYH1XdgZuO0lWEfcc8gJtdkNjr8SVL0xwkdkevbo8HLgSDevH3FpRLyPm2269DYtAjIQ-2qCi7VIigicHE0Ssf_j_CrcF5aCTBkf9TbPS0iECH50p0ggynG30wUGloVfFKI5FGJ90qWSaIy-KBU2uAgdNpvz41RFiqmNGeSxBhki3LlgCaC9fc7GxvJ2KPajO-utOU1Yo-GWYtpV8gXWCaNAxINptoSHNAc169TU1FGVqUnT418tL0')"></div>
+<div>
+<h4 class="font-bold text-white">David L.</h4>
+<p class="text-xs text-primary">U18 Finalist</p>
+</div>
+</div>
+<p class="text-sm text-gray-400">"The strategic analysis sessions are game-changing. Truly elite level."</p>
+</div>
+<div class="bg-background-dark p-6 rounded-2xl border border-white/5 flex items-center justify-center group hover:bg-surface-dark transition-all cursor-pointer">
+<div class="text-center">
+<div class="mx-auto h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-2 group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+<span class="text-sm font-bold text-white">View All Alumni</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-20 bg-background-dark">
+<div class="container mx-auto px-4 md:px-6">
+<h2 class="text-3xl md:text-4xl font-bold text-white mb-12 text-center">Voices from the Court</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Testimonial 1 -->
+<div class="bg-surface-dark p-8 rounded-[2rem] relative">
+<span class="material-symbols-outlined text-6xl text-primary/10 absolute top-6 right-6">format_quote</span>
+<div class="flex gap-1 text-primary mb-4">
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+</div>
+<p class="text-gray-300 mb-6 leading-relaxed">"As a parent investing in my child's future, I couldn't be happier. The disciplined approach and professional environment are unmatched."</p>
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 bg-gray-700 rounded-full flex items-center justify-center text-white font-bold">JD</div>
+<div>
+<p class="text-white font-bold text-sm">James Davidson</p>
+<p class="text-gray-500 text-xs">Parent of U14 Athlete</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="bg-surface-dark p-8 rounded-[2rem] relative">
+<span class="material-symbols-outlined text-6xl text-primary/10 absolute top-6 right-6">format_quote</span>
+<div class="flex gap-1 text-primary mb-4">
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+</div>
+<p class="text-gray-300 mb-6 leading-relaxed">"The level of detail in the coaching is incredible. They don't just teach you how to hit the ball, they teach you how to win."</p>
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 bg-gray-700 rounded-full flex items-center justify-center text-white font-bold">EP</div>
+<div>
+<p class="text-white font-bold text-sm">Elena P.</p>
+<p class="text-gray-500 text-xs">Professional Player</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="bg-surface-dark p-8 rounded-[2rem] relative">
+<span class="material-symbols-outlined text-6xl text-primary/10 absolute top-6 right-6">format_quote</span>
+<div class="flex gap-1 text-primary mb-4">
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+</div>
+<p class="text-gray-300 mb-6 leading-relaxed">"The facilities are pristine and the community is electric. It's the only place I trust for my off-season training."</p>
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 bg-gray-700 rounded-full flex items-center justify-center text-white font-bold">MR</div>
+<div>
+<p class="text-white font-bold text-sm">Marcus Rodriguez</p>
+<p class="text-gray-500 text-xs">Semi-Pro Athlete</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-20 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/10 z-0"></div>
+<div class="absolute -right-20 -bottom-20 w-96 h-96 bg-primary/20 rounded-full blur-[100px]"></div>
+<div class="absolute -left-20 -top-20 w-96 h-96 bg-primary/20 rounded-full blur-[100px]"></div>
+<div class="container mx-auto px-4 md:px-6 relative z-10 text-center">
+<h2 class="text-4xl md:text-5xl font-black text-white mb-6">READY TO ELEVATE YOUR GAME?</h2>
+<p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">Spaces for the upcoming Fall session are filling up fast. Secure your spot in the tryouts today.</p>
+<button class="inline-flex items-center justify-center h-16 px-10 rounded-full bg-primary text-background-dark text-xl font-extrabold tracking-wide transition-transform hover:scale-105 hover:shadow-[0_0_40px_rgba(83,210,45,0.6)]">
+                JOIN THE ACADEMY
+            </button>
+<div class="mt-8 flex justify-center gap-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+<!-- Fake Sponsor Logos -->
+<div class="h-8 w-24 bg-contain bg-center bg-no-repeat" data-alt="Nike logo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAGOEsWMpqPc_-tr3iHvaENXGTYCnTx9JXGl2lP8rxh0huvLbIRxSEhae1thEJvh-d6i2AtFrgEIz-EaLrmHz4xldwARILcx0hW7c0VRFdhMNMMNGXL3GdyLVpG9VZI3_6KQMof9yDJUJviYhcKoeHOGkSLpI2mD3pGp7-_Z975UQE67is4X4uPtFAMiBZ3ZjijL0BZr4H4D1SCUHH3Yo5r5x17EEthKP6moKmsytd_pZpFZhry_SQy8vbdD6iSaTiRfWQL4Xt9NRQ')"></div>
+<div class="h-8 w-24 bg-contain bg-center bg-no-repeat" data-alt="Adidas logo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDKjOlIQLriZmF-lbHVvpmZ-iqk-BA6R3J-Ohht19cfHUk2om9z7Yqu9Tpls9Fuld3Bg0gLA1B76J3KQauIjVfdhLHf9dfYrwTvEN1gjE2gai1lNeBJuEGWOQf9lfkU-pb-6GrIyUDY3vxEOOh4wmV4cY17y6g8J9S7EHaIbwnf0SSBAwDv3Eb5lP6GBQN3MF9YDgcKIvVya7lzlXMmoSx-TUptaAqvHt-HuHHkIWxXug0KO4Ua4wXvqCAWjlVZkWLa4ksXME0FvU4')"></div>
+<div class="h-8 w-24 bg-contain bg-center bg-no-repeat" data-alt="Under Armour logo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA5PvO0LXL1q30NKsVgm2LPFxKkR8w-3K4GVQZvVxD_K4M2n2X6rzfEIycztGPZL8c-z_TML89KkJk11RlxNOC3GVYmEUQFU79P5kJxkW3WrYi6_2MGbh5742DSv_W3I2DtLnW7SeKRyazf3QcbMXqtTMslHXqVTs4U3GYQ9LNOrChZtN45kBzGsAQSveINSz_c6HnqKPkJmsCjxFLMXV6LfRteB9_JdOBpfv6YlM48vRgdh07uG54EA95_hS7vU6WwP5-x-52Qp0k')"></div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#0b0d0b] border-t border-white/5 pt-16 pb-8">
+<div class="container mx-auto px-4 md:px-6">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+<div>
+<div class="flex items-center gap-2 mb-6">
+<span class="text-primary material-symbols-outlined !text-3xl">sports_tennis</span>
+<span class="text-xl font-extrabold tracking-tight text-white">
+                            PICKLEBALL<span class="text-primary">ACADEMY</span>
+</span>
+</div>
+<p class="text-gray-500 text-sm mb-6">Developing the world's best pickleball athletes through science, discipline, and community.</p>
+<div class="flex gap-4">
+<a class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary hover:text-background-dark transition-colors" href="#">
+<svg class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+</a>
+<a class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary hover:text-background-dark transition-colors" href="#">
+<svg class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.85-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Programs</h4>
+<ul class="space-y-4">
+<li><a class="text-gray-400 hover:text-primary text-sm transition-colors" href="#">Development Squad</a></li>
+<li><a class="text-gray-400 hover:text-primary text-sm transition-colors" href="#">High Performance</a></li>
+<li><a class="text-gray-400 hover:text-primary text-sm transition-colors" href="#">Adult Leagues</a></li>
+<li><a class="text-gray-400 hover:text-primary text-sm transition-colors" href="#">Private Coaching</a></li>
+<li><a class="text-gray-400 hover:text-primary text-sm transition-colors" href="#">Camps &amp; Clinics</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Academy</h4>
+<ul class="space-y-4">
+<li><a class="text-gray-400 hover:text-primary text-sm transition-colors" href="#">About Us</a></li>
+<li><a class="text-gray-400 hover:text-primary text-sm transition-colors" href="#">Our Facilities</a></li>
+<li><a class="text-gray-400 hover:text-primary text-sm transition-colors" href="#">Coaches</a></li>
+<li><a class="text-gray-400 hover:text-primary text-sm transition-colors" href="#">Alumni</a></li>
+<li><a class="text-gray-400 hover:text-primary text-sm transition-colors" href="#">Careers</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Contact</h4>
+<ul class="space-y-4 text-sm text-gray-400">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">location_on</span>
+<span>123 Pickleball Way,<br/>Austin, TX 78701</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">mail</span>
+<a class="hover:text-white" href="mailto:info@pickleballacademy.com">info@pickleballacademy.com</a>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">call</span>
+<a class="hover:text-white" href="tel:+15551234567">(555) 123-4567</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-gray-600 text-xs">© 2023 Pickleball Academy. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-gray-600 hover:text-gray-400 text-xs transition-colors" href="#">Privacy Policy</a>
+<a class="text-gray-600 hover:text-gray-400 text-xs transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Floating Action Button -->
+<button class="fixed bottom-8 right-8 z-50 flex items-center justify-center gap-2 h-14 px-6 rounded-full bg-primary text-background-dark shadow-[0_4px_20px_rgba(83,210,45,0.4)] transition-transform hover:scale-105 hover:-translate-y-1 font-bold">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="hidden md:inline">Book a Court</span>
+</button>
+</body></html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Our Programs - Apex Pickleball Academy</title>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#53d22d",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#131712", 
+                        "surface-dark": "#1f251d",
+                        "text-secondary": "#a5b6a0"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<div class="layout-container flex w-full flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#2d372a] px-10 py-4 bg-background-dark">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">sports_tennis</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Apex Pickleball Academy</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 hidden lg:flex">
+<div class="flex items-center gap-9">
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">Programs</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Coaches</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Facilities</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-6 bg-primary text-[#131712] text-sm font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-opacity">
+<span class="truncate">Member Login</span>
+</button>
+</div>
+<div class="lg:hidden text-white">
+<span class="material-symbols-outlined">menu</span>
+</div>
+</header>
+</div>
+<!-- Hero Section -->
+<div class="flex flex-col">
+<div class="@container">
+<div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat items-center justify-center p-8 relative" data-alt="Action shot of a professional pickleball player hitting a powerful volley on a dark court with green accents" style='background-image: linear-gradient(rgba(19, 23, 18, 0.7) 0%, rgba(19, 23, 18, 0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuC68_hTQ9agpLcVI-F7iwBVqutc07Fu3bpHV1fekWe0BlxTqUBqQw_LNIe-jNPTkqRK9G8saZxrIXq5lgtvmEI2wGPDMaQtQFyutSSScyIipMnHNuZVP6DGA_MgSNvtEv5N0sp1P-YP32IO3wFxpJqnNezKn_EP1ACD0MP-CNJuVtBA3dL_CsZ98zNUGVwRlOTf5NAR8VZBn9B1Mmd-_fQufQREEJ_uGEs3aFOcsOOA5EuSkz3yi7S4PKy2piSm2H_L61YwbYt0adk");'>
+<div class="flex flex-col gap-4 text-center max-w-[800px] z-10">
+<div class="flex justify-center">
+<span class="px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider border border-primary/30">Fall Registration Open</span>
+</div>
+<h1 class="text-white text-5xl font-black leading-tight tracking-[-0.033em] md:text-6xl">
+                            Forging the Future of Pickleball
+                        </h1>
+<h2 class="text-[#a5b6a0] text-lg font-normal leading-relaxed md:text-xl max-w-2xl mx-auto">
+                            World-class coaching and elite athletic development tailored for every stage of your game.
+                        </h2>
+</div>
+<div class="flex gap-4 mt-4 z-10">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-8 bg-primary text-[#131712] text-base font-bold leading-normal tracking-[0.015em] hover:scale-105 transition-transform shadow-[0_0_20px_rgba(83,210,45,0.3)]">
+<span class="truncate">Explore Programs</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Tabs Navigation -->
+<div class="sticky top-0 z-50 bg-background-dark/95 backdrop-blur-md border-b border-[#2d372a]">
+<div class="layout-container flex justify-center">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1 w-full px-4 md:px-0">
+<div class="flex overflow-x-auto no-scrollbar justify-between md:justify-start md:gap-12">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-primary text-white pb-3 pt-4 px-2 min-w-fit" href="#">
+<p class="text-white text-sm font-bold leading-normal tracking-[0.015em]">All Programs</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-text-secondary hover:text-white pb-3 pt-4 px-2 min-w-fit transition-colors" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">Junior Academy</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-text-secondary hover:text-white pb-3 pt-4 px-2 min-w-fit transition-colors" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">Adult Leagues</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-text-secondary hover:text-white pb-3 pt-4 px-2 min-w-fit transition-colors" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">Camps &amp; Clinics</p>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content Area -->
+<div class="layout-container flex grow flex-col py-10">
+<!-- Junior Section -->
+<div class="flex flex-1 justify-center">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1 w-full px-4 md:px-0">
+<div class="flex items-center justify-between px-4 pb-6 pt-2">
+<h2 class="text-white text-2xl font-bold leading-tight tracking-[-0.015em]">Junior Development</h2>
+<span class="hidden md:inline-flex items-center gap-1 text-primary text-sm font-bold cursor-pointer hover:underline">
+                            View Schedule <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+<div class="flex flex-col gap-6 px-4">
+<!-- Card 1 -->
+<div class="@container">
+<div class="flex flex-col items-stretch justify-start rounded-2xl md:flex-row md:items-start shadow-lg bg-surface-dark border border-[#2d372a] hover:border-primary/50 transition-colors group overflow-hidden">
+<div class="w-full md:w-[320px] bg-center bg-no-repeat aspect-video md:aspect-auto md:h-auto bg-cover shrink-0" data-alt="Young boy focused on hitting a pickleball with a paddle" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDUgvwKpvJCQaoN9GW2GUHNPi-bCgc5oRyEKXeGkxsoaLgIxyS-Znb7vSxEhB43Np14vqTV-7tXaBCi8jwGbMqVXdy00Yp_epXeabmnFbmnsuGkkpOV0BPJ8IFC1ejvCHYHYcipIW5R57IpDol9idrT97966eZBE-u5AqlZKneRPy3Qf6St1xIb4MEFUI0mki15bdF7YbLASmZFyk74I0EDRPfbQIlFPJv1_3KWDNGNLeZCToIZsWWrVlvWv_ezrxX-vAwjTC_sHzk");'></div>
+<div class="flex w-full grow flex-col items-stretch justify-center gap-1 p-6">
+<div class="flex justify-between items-start mb-2">
+<p class="text-primary text-xs font-bold uppercase tracking-wider bg-primary/10 px-2 py-1 rounded-md">Ages 6-10</p>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-yellow-500 text-sm">star</span>
+<span class="material-symbols-outlined text-yellow-500 text-sm">star</span>
+<span class="material-symbols-outlined text-yellow-500 text-sm">star</span>
+<span class="material-symbols-outlined text-yellow-500 text-sm">star</span>
+<span class="material-symbols-outlined text-text-secondary text-sm">star</span>
+</div>
+</div>
+<h3 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Future Stars Program</h3>
+<p class="text-text-secondary text-base font-normal leading-relaxed mt-2 mb-4">
+                                        Build a solid foundation with fun, fundamental-focused training designed to ignite a passion for the sport.
+                                    </p>
+<div class="grid grid-cols-2 gap-2 mb-6">
+<div class="flex items-center gap-2 text-text-secondary text-sm">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> Motor Skills
+                                        </div>
+<div class="flex items-center gap-2 text-text-secondary text-sm">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> Hand-Eye Coord.
+                                        </div>
+<div class="flex items-center gap-2 text-text-secondary text-sm">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> Game Basics
+                                        </div>
+<div class="flex items-center gap-2 text-text-secondary text-sm">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> Teamwork
+                                        </div>
+</div>
+<div class="flex items-center justify-between border-t border-[#2d372a] pt-4 mt-auto">
+<span class="text-white font-bold">$150<span class="text-text-secondary font-normal text-sm"> / month</span></span>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 bg-white text-[#131712] text-sm font-bold leading-normal hover:bg-primary transition-colors">
+<span class="truncate">Register Now</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="@container">
+<div class="flex flex-col items-stretch justify-start rounded-2xl md:flex-row md:items-start shadow-lg bg-surface-dark border border-[#2d372a] hover:border-primary/50 transition-colors group overflow-hidden">
+<div class="w-full md:w-[320px] bg-center bg-no-repeat aspect-video md:aspect-auto md:h-auto bg-cover shrink-0" data-alt="Teenage girl serving pickleball in an indoor court" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuChpPPc-mg24K_xNFAdTbK_dB9ZmmOmriTfPFbcUqCb7Q3gXd-NRw_KgVuUmIs8A_j63cy_W_ORyMl9qw50Xq06OqfAQRQ7WMAkukVCfrH3hlz_YZtGvMWmO9fuEY1llYWekjWQBG37K5IIe_QHNyYGf9b3GvoCtoHlk83SrBYo9bfkVBsu6KHSipYNH57Yi8H_QeqSwC2bDJiRSZptvkgF_uUCtscja8HntkrdDRU5VjaUsM0JO0Xw06DMyh2DyVvI4wXaChkC8XA");'></div>
+<div class="flex w-full grow flex-col items-stretch justify-center gap-1 p-6">
+<div class="flex justify-between items-start mb-2">
+<p class="text-primary text-xs font-bold uppercase tracking-wider bg-primary/10 px-2 py-1 rounded-md">Ages 11-18</p>
+</div>
+<h3 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Elite Academy Squad</h3>
+<p class="text-text-secondary text-base font-normal leading-relaxed mt-2 mb-4">
+                                        Advanced technical training and strategic development for competitive juniors aiming for tournament success.
+                                    </p>
+<div class="grid grid-cols-2 gap-2 mb-6">
+<div class="flex items-center gap-2 text-text-secondary text-sm">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> Advanced Tactics
+                                        </div>
+<div class="flex items-center gap-2 text-text-secondary text-sm">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> Match Analysis
+                                        </div>
+<div class="flex items-center gap-2 text-text-secondary text-sm">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> Tournament Prep
+                                        </div>
+<div class="flex items-center gap-2 text-text-secondary text-sm">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> Mental Toughness
+                                        </div>
+</div>
+<div class="flex items-center justify-between border-t border-[#2d372a] pt-4 mt-auto">
+<span class="text-white font-bold">$225<span class="text-text-secondary font-normal text-sm"> / month</span></span>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 bg-white text-[#131712] text-sm font-bold leading-normal hover:bg-primary transition-colors">
+<span class="truncate">Apply Now</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats / Why Choose Us Strip -->
+<div class="w-full bg-surface-dark border-y border-[#2d372a] my-16 py-12">
+<div class="flex justify-center">
+<div class="layout-content-container flex flex-col md:flex-row max-w-[960px] flex-1 w-full px-8 gap-8 justify-between items-center text-center md:text-left">
+<div class="flex flex-col gap-2 items-center md:items-start">
+<div class="p-3 rounded-full bg-background-dark border border-[#2d372a] text-primary mb-2">
+<span class="material-symbols-outlined text-3xl">school</span>
+</div>
+<h4 class="text-white text-3xl font-black">50+</h4>
+<p class="text-text-secondary font-medium">Pro Alumni Graduated</p>
+</div>
+<div class="w-full h-px bg-[#2d372a] md:w-px md:h-16"></div>
+<div class="flex flex-col gap-2 items-center md:items-start">
+<div class="p-3 rounded-full bg-background-dark border border-[#2d372a] text-primary mb-2">
+<span class="material-symbols-outlined text-3xl">groups</span>
+</div>
+<h4 class="text-white text-3xl font-black">10:1</h4>
+<p class="text-text-secondary font-medium">Player to Coach Ratio</p>
+</div>
+<div class="w-full h-px bg-[#2d372a] md:w-px md:h-16"></div>
+<div class="flex flex-col gap-2 items-center md:items-start">
+<div class="p-3 rounded-full bg-background-dark border border-[#2d372a] text-primary mb-2">
+<span class="material-symbols-outlined text-3xl">stadium</span>
+</div>
+<h4 class="text-white text-3xl font-black">12</h4>
+<p class="text-text-secondary font-medium">Pro-Surface Courts</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Adult Section -->
+<div class="flex flex-1 justify-center">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1 w-full px-4 md:px-0">
+<div class="flex items-center justify-between px-4 pb-6">
+<h2 class="text-white text-2xl font-bold leading-tight tracking-[-0.015em]">Adult Programs</h2>
+<span class="hidden md:inline-flex items-center gap-1 text-primary text-sm font-bold cursor-pointer hover:underline">
+                            League Standings <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
+<!-- Adult Card 1 -->
+<div class="flex flex-col rounded-2xl bg-surface-dark border border-[#2d372a] hover:border-primary/50 transition-all group overflow-hidden">
+<div class="w-full h-48 bg-center bg-no-repeat bg-cover relative" data-alt="Close up of pickleball paddle and ball on court surface" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAA-pDRXHrvAow7v7e6BxVmHIjd4-bXjEMMWTfqRiOAbfysmk7vTxmGgSm9YhleEUvMZRx-a6nwrpQWumPgC--7jZU2qKjMCnS4VDKgh5bCgiUr-xqDZoInhtJ_RLUl3xY8J-qRwatBH7xAIVqsFZ2YLFSbZlsv08tidh5rvHducjspSMFFm2DkXR94fCATA3QVq2GrYh-ybGHwW_JUo5z7metd0Zj4c7wa5difigXRXvQp1DASWqFiJVH4aLHMx9_27UBKslyB2HE");'>
+<div class="absolute top-4 right-4 bg-background-dark/80 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-white border border-[#2d372a]">Beginner / Intermediate</div>
+</div>
+<div class="flex flex-col p-6 flex-grow">
+<h3 class="text-white text-xl font-bold mb-2">Skills Lab Clinics</h3>
+<p class="text-text-secondary text-sm mb-4 line-clamp-3">
+                                    Weekly 90-minute sessions focusing on specific mechanics: dinking, third shot drops, and transition zone mastery.
+                                </p>
+<div class="mt-auto pt-4 border-t border-[#2d372a] flex items-center justify-between">
+<div class="flex items-center gap-1 text-text-secondary text-xs">
+<span class="material-symbols-outlined text-base">schedule</span> Tue/Thu 6pm
+                                    </div>
+<button class="text-primary font-bold text-sm hover:text-white transition-colors">Learn More</button>
+</div>
+</div>
+</div>
+<!-- Adult Card 2 -->
+<div class="flex flex-col rounded-2xl bg-surface-dark border border-[#2d372a] hover:border-primary/50 transition-all group overflow-hidden">
+<div class="w-full h-48 bg-center bg-no-repeat bg-cover relative" data-alt="Two adult pickleball players high fiving after a point" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBw5RRXky1KgUHnhK3wbkoAX2XOKiRXwMsYaejwUwEJCV8_1k5ZkrjRNMfOCzmfjWMwLH4dnhkrz5itq09B2xvp2YtC5NfNtKRICUKz0uC5jmN8eZiclYjzLH4MNQlKiuUJV3EUjU7yZJxBpfQBFRMc1y9hO2EATXuwl90RaRh5bSywwAv8xnHYGjfC13TOSzdpkn4XD7E1g5A3u6COnIKuh0Q0jUFBmU9kYYZXbZZooH6jVNn8W2gxu0NKil9yR11iW2ZHs60jJoM");'>
+<div class="absolute top-4 right-4 bg-primary text-[#131712] px-3 py-1 rounded-full text-xs font-bold shadow-lg shadow-primary/20">Competitive</div>
+</div>
+<div class="flex flex-col p-6 flex-grow">
+<h3 class="text-white text-xl font-bold mb-2">Ladder League</h3>
+<p class="text-text-secondary text-sm mb-4 line-clamp-3">
+                                    Our flagship competitive league. Move up or down courts weekly based on performance. Verified DUPR required.
+                                </p>
+<div class="mt-auto pt-4 border-t border-[#2d372a] flex items-center justify-between">
+<div class="flex items-center gap-1 text-text-secondary text-xs">
+<span class="material-symbols-outlined text-base">calendar_month</span> Starts Oct 1st
+                                    </div>
+<button class="text-primary font-bold text-sm hover:text-white transition-colors">Join Waitlist</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Private Instruction Banner -->
+<div class="flex justify-center mt-12 mb-8">
+<div class="layout-content-container w-full max-w-[960px] px-4">
+<div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary to-[#2a910b] p-8 md:p-12">
+<div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="text-center md:text-left">
+<h2 class="text-[#131712] text-2xl md:text-3xl font-black mb-2">Private Instruction</h2>
+<p class="text-[#131712] font-medium max-w-md">Get 1-on-1 analysis with our certified pros. Video breakdown included with every package.</p>
+</div>
+<button class="whitespace-nowrap rounded-full bg-[#131712] px-6 py-3 text-white font-bold hover:bg-opacity-80 transition-opacity">
+                                 Book a Lesson
+                             </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-[#0e110d] border-t border-[#2d372a] pt-16 pb-8">
+<div class="layout-container flex justify-center">
+<div class="layout-content-container flex flex-col max-w-[960px] w-full px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 text-white mb-4">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-2xl">sports_tennis</span>
+</div>
+<h3 class="text-lg font-bold">Apex Academy</h3>
+</div>
+<p class="text-text-secondary text-sm leading-relaxed">
+                                The premier destination for elite pickleball training and athletic development.
+                            </p>
+</div>
+<div>
+<h4 class="text-white font-bold mb-4">Programs</h4>
+<ul class="flex flex-col gap-2 text-sm text-text-secondary">
+<li><a class="hover:text-primary transition-colors" href="#">Junior Academy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Adult Leagues</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Camps</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Private Lessons</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-4">Academy</h4>
+<ul class="flex flex-col gap-2 text-sm text-text-secondary">
+<li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Coaches</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Facilities</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-4">Stay Updated</h4>
+<div class="flex flex-col gap-3">
+<input class="bg-surface-dark border border-[#2d372a] text-white text-sm rounded-lg px-4 py-2 focus:outline-none focus:border-primary transition-colors" placeholder="Enter your email" type="email"/>
+<button class="bg-primary text-[#131712] font-bold text-sm rounded-lg px-4 py-2 hover:bg-opacity-90 transition-opacity">Subscribe</button>
+</div>
+</div>
+</div>
+<div class="border-t border-[#2d372a] pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-text-secondary text-xs">© 2023 Apex Pickleball Academy. All rights reserved.</p>
+<div class="flex gap-4 text-text-secondary">
+<a class="hover:text-white transition-colors" href="#"><span class="material-symbols-outlined text-lg">social_leaderboard</span></a>
+<a class="hover:text-white transition-colors" href="#"><span class="material-symbols-outlined text-lg">photo_camera</span></a> <!-- Instagram alt -->
+<a class="hover:text-white transition-colors" href="#"><span class="material-symbols-outlined text-lg">alternate_email</span></a> <!-- Twitter alt -->
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</body></html>
