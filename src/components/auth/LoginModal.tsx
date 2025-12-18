@@ -4,9 +4,10 @@ import Modal from '../shared/Modal';
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onSwitchToRegister: () => void;
 }
 
-export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
+export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: LoginModalProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -134,7 +135,10 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
       <p className="mt-8 text-center text-sm text-slate-500">
         Don't have an account?{' '}
-        <button className="font-bold text-secondary hover:underline">
+        <button 
+            onClick={onSwitchToRegister}
+            className="font-bold text-secondary hover:underline"
+        >
           Join the Academy
         </button>
       </p>

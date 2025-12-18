@@ -3,13 +3,25 @@ import { Link, useLocation } from 'react-router-dom';
 
 import DJoyLogo from '../shared/DJoyLogo';
 import LoginModal from '../auth/LoginModal';
+import RegisterModal from '../auth/RegisterModal';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
+
+  const handleOpenLogin = () => {
+    setIsRegisterModalOpen(false);
+    setIsLoginModalOpen(true);
+  };
+
+  const handleOpenRegister = () => {
+    setIsLoginModalOpen(false);
+    setIsRegisterModalOpen(true);
+  };
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -52,7 +64,7 @@ export default function Header() {
           
           <div className="flex items-center gap-4">
             <button 
-              onClick={() => setIsLoginModalOpen(true)}
+              onClick={handleOpenLogin}
               className="hidden md:flex min-w-[100px] cursor-pointer items-center justify-center rounded-full h-10 px-6 bg-brand-gradient text-white text-sm font-bold transition-transform hover:scale-105 hover:shadow-lg"
             >
               Member Login
@@ -88,7 +100,7 @@ export default function Header() {
              <button 
               onClick={() => {
                 setIsMobileMenuOpen(false);
-                setIsLoginModalOpen(true);
+                handleOpenLogin();
               }}
               className="w-full cursor-pointer items-center justify-center rounded-full h-10 px-6 bg-brand-gradient text-white text-sm font-bold"
              >
@@ -101,6 +113,13 @@ export default function Header() {
       <LoginModal 
         isOpen={isLoginModalOpen} 
         onClose={() => setIsLoginModalOpen(false)} 
+        onSwitchToRegister={handleOpenRegister}
+      />
+
+      <RegisterModal 
+        isOpen={isRegisterModalOpen} 
+        onClose={() => setIsRegisterModalOpen(false)} 
+        onSwitchToLogin={handleOpenLogin}
       />
     </header>
   );
