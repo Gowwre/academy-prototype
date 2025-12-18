@@ -6,6 +6,7 @@ import Programs from './pages/Programs';
 import About from './pages/About';
 import Posts from './pages/Posts';
 import PostDetail from './pages/PostDetail';
+import LearningCenter from './pages/LearningCenter';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="posts" element={<Posts />} />
           <Route path="posts/:id" element={<PostDetail />} />
+          <Route path="learning" element={<LearningCenter />} />
         </Route>
       </Routes>
     </BrowserRouter>

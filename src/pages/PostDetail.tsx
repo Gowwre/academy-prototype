@@ -2,7 +2,10 @@ import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
 // Static mock data as requested
-const MOCK_POST_DETAIL = {
+import { LEARNING_RESOURCES } from '../data/learningResources';
+
+// Static mock data as requested
+const DEFAULT_POST_DETAIL = {
   title: 'Academy Players Dominate Regional Qualifiers',
   date: 'Oct 12, 2024',
   category: 'Tournament Results',
@@ -31,7 +34,19 @@ const MOCK_POST_DETAIL = {
 };
 
 export default function PostDetail() {
-  const { id } = useParams(); // Hooks are valid, even if we don't use the ID for data fetching yet.
+  const { id } = useParams();
+  
+  // Try to find the resource, otherwise fallback to default
+  const learningResource = LEARNING_RESOURCES.find(r => r.id === id);
+  
+  const post = learningResource ? {
+    title: learningResource.title,
+    date: learningResource.date,
+    category: learningResource.category,
+    author: 'Academy Expert',
+    image: learningResource.image,
+    content: learningResource.content || `<p>${learningResource.excerpt}</p>`
+  } : DEFAULT_POST_DETAIL;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -43,7 +58,7 @@ export default function PostDetail() {
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('${MOCK_POST_DETAIL.image}')` }}
+          style={{ backgroundImage: `url('${post.image}')` }}
         ></div>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent"></div>
         
@@ -55,16 +70,16 @@ export default function PostDetail() {
              </Link>
              <div className="flex items-center gap-4 mb-4">
                 <span className="px-3 py-1 rounded-full bg-primary text-white text-xs font-bold uppercase tracking-wider">
-                    {MOCK_POST_DETAIL.category}
+                    {post.category}
                 </span>
-                <span className="text-white/80 text-sm font-medium border-l border-white/20 pl-4">{MOCK_POST_DETAIL.date}</span>
+                <span className="text-white/80 text-sm font-medium border-l border-white/20 pl-4">{post.date}</span>
              </div>
              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-4">
-                {MOCK_POST_DETAIL.title}
+                {post.title}
              </h1>
              <div className="flex items-center gap-2 text-white/80">
                 <span className="material-symbols-outlined text-lg">edit</span>
-                <span className="text-sm font-bold uppercase tracking-wide">By {MOCK_POST_DETAIL.author}</span>
+                <span className="text-sm font-bold uppercase tracking-wide">By {post.author}</span>
              </div>
           </div>
         </div>
@@ -79,7 +94,7 @@ export default function PostDetail() {
                 prose-p:text-slate-600 prose-p:leading-relaxed 
                 prose-a:text-primary prose-a:no-underline hover:prose-a:underline
                 prose-strong:text-slate-900 prose-strong:font-bold"
-                dangerouslySetInnerHTML={{ __html: MOCK_POST_DETAIL.content }}
+                dangerouslySetInnerHTML={{ __html: post.content }}
             ></div>
 
             {/* Tags / Share (Visual Only) */}

@@ -14,6 +14,7 @@ export default function Header() {
     { name: 'Our Programs', path: '/programs' },
     { name: 'About Us', path: '/about' },
     { name: 'News', path: '/posts' },
+    { name: 'Learning', path: '/learning' },
   ];
 
   return (
