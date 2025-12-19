@@ -22,7 +22,7 @@ const DJoyLogo: React.FC<DJoyLogoProps> = ({
   return (
     <div className={`inline-flex items-center ${className}`}>
       <img 
-        src={`/academy-prototype/public/djoy-academy.jpg`}
+        src={`/academy-prototype/djoy-academy.jpg`}
         alt="DJoy Academy" 
         className={`${sizeClasses[size]} w-auto object-contain bg-white p-2 rounded-2xl shadow-lg transition-transform hover:scale-105`}
       />
