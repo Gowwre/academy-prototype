@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { STAFF_MEMBERS } from '../../data/staff';
+import { STAFF_MEMBERS, type StaffMember } from '../../data/staff';
+import StaffDetailModal from '../about/StaffDetailModal';
 
 interface StepCoachSelectionProps {
   bookingData: any;
@@ -13,6 +14,7 @@ export default function StepCoachSelection({ bookingData, updateBookingData, onN
   const [packageType, setPackageType] = useState(bookingData.packageType || 'single');
   const [lessonFocus, setLessonFocus] = useState(bookingData.lessonFocus || '');
   const [skillLevel, setSkillLevel] = useState(bookingData.skillLevel || '');
+  const [viewingStaff, setViewingStaff] = useState<StaffMember | null>(null);
 
   // Mock slots - in a real app this would fetch based on coach availability
   const mockSlots = [
@@ -89,7 +91,20 @@ export default function StepCoachSelection({ bookingData, updateBookingData, onN
                         <h4 className="font-bold text-slate-900 group-hover:text-primary transition-colors">{staff.name}</h4>
                         <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">{staff.role}</p>
                     </div>
-                     {selectedCoachId === staff.id && <span className="material-symbols-outlined text-primary">check_circle</span>}
+                    <div className="flex items-center gap-2">
+                         <button 
+                            type="button"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setViewingStaff(staff);
+                            }}
+                            className="p-1 px-2 rounded-lg bg-slate-100 text-slate-400 hover:text-primary transition-colors flex items-center gap-1"
+                         >
+                            <span className="material-symbols-outlined text-[18px]">info</span>
+                            <span className="text-[10px] font-bold uppercase">Info</span>
+                         </button>
+                         {selectedCoachId === staff.id && <span className="material-symbols-outlined text-primary">check_circle</span>}
+                    </div>
                 </div>
                 <p className="text-sm text-slate-500 line-clamp-2">{staff.bio}</p>
               </div>
@@ -193,6 +208,13 @@ export default function StepCoachSelection({ bookingData, updateBookingData, onN
         </button>
       </div>
 
+      {/* Detail Modal */}
+      <StaffDetailModal 
+        staff={viewingStaff}
+        onClose={() => setViewingStaff(null)}
+      />
+
     </div>
   );
 }
+
