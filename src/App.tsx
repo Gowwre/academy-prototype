@@ -4,6 +4,7 @@ import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import Programs from './pages/Programs';
 import ProgramDetail from './pages/ProgramDetail';
+import Booking from './pages/Booking';
 import About from './pages/About';
 import Posts from './pages/Posts';
 import PostDetail from './pages/PostDetail';
@@ -16,6 +17,7 @@ function App() {
   return (
     <BrowserRouter basename="/academy-prototype">
       <Routes>
+        <Route path="/booking" element={<Booking />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="programs" element={<Programs />} />

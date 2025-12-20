@@ -135,9 +135,9 @@ export default function ProgramDetail() {
                     )}
                 </div>
 
-                <button className="w-full py-4 rounded-xl bg-brand-gradient text-white font-bold text-lg shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all">
+                <Link to={`/booking?program=${program.slug}`} className="block w-full text-center py-4 rounded-xl bg-brand-gradient text-white font-bold text-lg shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all">
                     {program.ctaText}
-                </button>
+                </Link>
                 <p className="text-center text-slate-400 text-xs mt-4">
                     Secure payment • Limited spots available
                 </p>
