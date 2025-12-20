@@ -1,5 +1,13 @@
 
+import { useState } from 'react';
+import { STAFF_MEMBERS } from '../data/staff';
+import StaffDetailModal from '../components/about/StaffDetailModal';
+
 export default function About() {
+  const [selectedStaffId, setSelectedStaffId] = useState<string | null>(null);
+  
+  const selectedStaff = STAFF_MEMBERS.find(s => s.id === selectedStaffId) || null;
+
   return (
     <div className="w-full flex justify-center flex-col bg-white min-h-screen">
        {/* Hero Section */}
@@ -133,69 +141,39 @@ export default function About() {
                     </p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {/* Coach 1 */}
-                    <div className="flex flex-col gap-4 rounded-2xl bg-white border border-gray-200 p-4 group hover:-translate-y-1 transition-transform duration-300 shadow-sm">
-                        <div className="aspect-[4/5] w-full rounded-xl bg-center bg-cover bg-no-repeat grayscale group-hover:grayscale-0 transition-all duration-500" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuAkcSKk0gruFpuAxRSaR6TxtPJwgIij0D76Z_WXuXKQJSqVEm2IQy-IZ6GTYYRUFgJV2oOuNhQjj__ikL9W2A5Gwpl2jmYSKtiL0IYuJO9y2fnsQVI-_76p0r5hkDMyjC7vQjnOCu2fXnrHhG0d06Gw3wa-Le4Vqs14RtzM9r3GRu39QE9tR-pusFEI_k1678HJy5hjnixgvddyEtoxkTfPwMXc1dozIsVymrH0ab_9DlqsRPRvuXYtM6CHbP3EbVKE29ZjrHoWFY0")' }}></div>
-                        <div className="flex flex-col gap-1 px-1">
-                            <h3 className="text-slate-900 text-lg font-bold">Sarah Jenkins</h3>
-                            <p className="text-primary text-sm font-bold uppercase tracking-wide">Director of Pickleball</p>
-                            <div className="mt-3 flex flex-wrap gap-2">
-                                <span className="inline-flex items-center rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700 ring-1 ring-inset ring-slate-200">IPTPA Level II</span>
-                                <span className="inline-flex items-center rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700 ring-1 ring-inset ring-slate-200">15yrs Pro</span>
+                    {STAFF_MEMBERS.map((staff) => (
+                        <div key={staff.id} className="flex flex-col gap-4 rounded-2xl bg-white border border-gray-200 p-4 group hover:-translate-y-1 transition-transform duration-300 shadow-sm">
+                            <div 
+                                className="aspect-[4/5] w-full rounded-xl bg-center bg-cover bg-no-repeat grayscale group-hover:grayscale-0 transition-all duration-500" 
+                                style={{ backgroundImage: `url("${staff.imageUrl}")` }}
+                            ></div>
+                            <div className="flex flex-col gap-1 px-1">
+                                <h3 className="text-slate-900 text-lg font-bold">{staff.name}</h3>
+                                <p className="text-primary text-sm font-bold uppercase tracking-wide">{staff.role}</p>
+                                <div className="mt-3 flex flex-wrap gap-2">
+                                    {staff.badges.map((badge, idx) => (
+                                        <span key={idx} className="inline-flex items-center rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700 ring-1 ring-inset ring-slate-200">
+                                            {badge}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
+                            <button 
+                                onClick={() => setSelectedStaffId(staff.id)}
+                                className="mt-2 w-full py-2 rounded-lg bg-white border border-gray-200 text-slate-900 text-xs font-bold uppercase tracking-wider hover:bg-gray-50 transition-colors cursor-pointer"
+                            >
+                                View Credentials
+                            </button>
                         </div>
-                        <button className="mt-2 w-full py-2 rounded-lg bg-white border border-gray-200 text-slate-900 text-xs font-bold uppercase tracking-wider hover:bg-gray-50 transition-colors">
-                            View Credentials
-                        </button>
-                    </div>
-                    {/* Coach 2 */}
-                    <div className="flex flex-col gap-4 rounded-2xl bg-white border border-gray-200 p-4 group hover:-translate-y-1 transition-transform duration-300 shadow-sm">
-                         <div className="aspect-[4/5] w-full rounded-xl bg-center bg-cover bg-no-repeat grayscale group-hover:grayscale-0 transition-all duration-500" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuA6MPF-8RgY7r1HVf7JLg4RJHPXhyb9NJAeW90fWJqko--smqv5QBK7fB-NWam7PNhGna6VKi3qkzZ2ubK7xg2zLjWKnsJgI6YypBcVJ3Emi1BmhFJ7a_bOO-o83EoI4Lh0Ln6gyC7VD0BNiasj7QGtDgX7AL5s8-yJke950m9aTjFkaYaZ3SxuEVIuuqz9LTnQn7xqrdhJCOOd6ywhgSxXsvCeIDZrteNzyIdKj6PByyqjrexbim87-DQcAL0WnYet8jGHfXtfJ24")' }}></div>
-                        <div className="flex flex-col gap-1 px-1">
-                            <h3 className="text-slate-900 text-lg font-bold">Marcus Thorne</h3>
-                            <p className="text-primary text-sm font-bold uppercase tracking-wide">Senior Head Coach</p>
-                            <div className="mt-3 flex flex-wrap gap-2">
-                                <span className="inline-flex items-center rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700 ring-1 ring-inset ring-slate-200">PPR Certified</span>
-                                <span className="inline-flex items-center rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700 ring-1 ring-inset ring-slate-200">Natl. Champion</span>
-                            </div>
-                        </div>
-                        <button className="mt-2 w-full py-2 rounded-lg bg-white border border-gray-200 text-slate-900 text-xs font-bold uppercase tracking-wider hover:bg-gray-50 transition-colors">
-                            View Credentials
-                        </button>
-                    </div>
-                    {/* Coach 3 */}
-                    <div className="flex flex-col gap-4 rounded-2xl bg-white border border-gray-200 p-4 group hover:-translate-y-1 transition-transform duration-300 shadow-sm">
-                         <div className="aspect-[4/5] w-full rounded-xl bg-center bg-cover bg-no-repeat grayscale group-hover:grayscale-0 transition-all duration-500" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuALFiAd6l1IEs4NddRZObBL4P7zaxLj9QCwFDpBA7h7EkWxrc9a4MQz_1I09vj6b1iLRFjhTQfvCHATydeeh9A_xAGOkTn2VMe5sDGtsblWv42MPyC3p5UKEQZhNKsKKzPP37wguVCHl-U8xPpeqKAQAcOp4LZBKaHvBfydHyuXnJWDss-aohNFML8x-6gasWERikbJ6trWHtJhJRmqoY34U68iSW3MBamEBeErXMlAAKalxYScHIYOPGvpHFhDJ-zpqKfuuTB1Pjk")' }}></div>
-                        <div className="flex flex-col gap-1 px-1">
-                            <h3 className="text-slate-900 text-lg font-bold">Elena Rodriguez</h3>
-                            <p className="text-primary text-sm font-bold uppercase tracking-wide">Performance Director</p>
-                            <div className="mt-3 flex flex-wrap gap-2">
-                                <span className="inline-flex items-center rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700 ring-1 ring-inset ring-slate-200">CSCS</span>
-                                <span className="inline-flex items-center rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700 ring-1 ring-inset ring-slate-200">PhD Kinesiology</span>
-                            </div>
-                        </div>
-                        <button className="mt-2 w-full py-2 rounded-lg bg-white border border-gray-200 text-slate-900 text-xs font-bold uppercase tracking-wider hover:bg-gray-50 transition-colors">
-                            View Credentials
-                        </button>
-                    </div>
-                     {/* Coach 4 */}
-                     <div className="flex flex-col gap-4 rounded-2xl bg-white border border-gray-200 p-4 group hover:-translate-y-1 transition-transform duration-300 shadow-sm">
-                         <div className="aspect-[4/5] w-full rounded-xl bg-center bg-cover bg-no-repeat grayscale group-hover:grayscale-0 transition-all duration-500" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuC9J1ASh4fcV67sXYF9h9KM6_EOPYZzlkZHs4hacBgw6lMWmrAcuHSTd4NShTEd17jGjnSHsd9q9EUEWexG2eaFaQA1el7mZEwbgsMfg97f2-hAgy8d-ltZDtRTJ_qxoa0EZzDWAUt6fweOflomgsG7kmcWO6_gITvWgHi2DM43wZeG4IzsAxLOIGUVAYJsYgiBiJesdzn6ZA1lCKS_9g3bmsKSRS8MyhzfGTicPtIfRxqK272XGQzD-0ZoIHoTjYSIvy4nLQqzSJo")' }}></div>
-                        <div className="flex flex-col gap-1 px-1">
-                            <h3 className="text-slate-900 text-lg font-bold">David Chen</h3>
-                            <p className="text-primary text-sm font-bold uppercase tracking-wide">Strategy Specialist</p>
-                            <div className="mt-3 flex flex-wrap gap-2">
-                                <span className="inline-flex items-center rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700 ring-1 ring-inset ring-slate-200">Data Analyst</span>
-                                <span className="inline-flex items-center rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700 ring-1 ring-inset ring-slate-200">US Open Gold</span>
-                            </div>
-                        </div>
-                        <button className="mt-2 w-full py-2 rounded-lg bg-white border border-gray-200 text-slate-900 text-xs font-bold uppercase tracking-wider hover:bg-gray-50 transition-colors">
-                            View Credentials
-                        </button>
-                    </div>
+                    ))}
                 </div>
             </div>
         </div>
+        
+        <StaffDetailModal 
+            staff={selectedStaff}
+            onClose={() => setSelectedStaffId(null)}
+        />
 
         {/* Facilities Section */}
         <div className="w-full flex justify-center py-16 px-4 md:px-10 bg-brand-gradient">
