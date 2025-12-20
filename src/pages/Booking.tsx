@@ -5,6 +5,7 @@ import { programs } from '../data/programs';
 import StepSelection from '../components/booking/StepSelection';
 import StepParticipants from '../components/booking/StepParticipants';
 import StepSummary from '../components/booking/StepSummary';
+import StepCoachSelection from '../components/booking/StepCoachSelection';
 
 export default function Booking() {
   const [searchParams] = useSearchParams();
@@ -19,7 +20,12 @@ export default function Booking() {
     price: '',
     participants: [],
     visitorType: 'local', // Default intent
-    extras: []
+    extras: [],
+    category: '', // Added category
+    coachId: '', // For private
+    coachName: '',
+    slot: '',
+    packageType: ''
   });
 
   // Load program from URL
@@ -31,13 +37,15 @@ export default function Booking() {
           ...prev,
           programId: program.id,
           programTitle: program.title,
-          price: program.price
+          price: program.price,
+          category: program.category
         }));
       }
     }
   }, [programSlug]);
 
   const totalSteps = 3;
+  const isPrivate = bookingData.category === 'private';
 
   const nextStep = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -72,7 +80,7 @@ export default function Booking() {
                       {step < currentStep ? <span className="material-symbols-outlined text-sm">check</span> : step}
                    </div>
                    <span className={`hidden md:block font-bold text-sm uppercase tracking-wide ${step === currentStep ? 'text-primary' : 'text-slate-500'}`}>
-                      {step === 1 ? 'Selection' : step === 2 ? 'Details' : 'Success'}
+                      {step === 1 ? (isPrivate ? 'Coach & Time' : 'Selection') : step === 2 ? 'Details' : 'Success'}
                    </span>
                 </div>
              ))}
@@ -88,7 +96,7 @@ export default function Booking() {
             {/* Context Header */}
             <div className="text-center mb-10">
                 <h1 className="text-3xl font-black text-slate-900 mb-2">
-                    {currentStep === 1 ? 'Configure Your Program' : currentStep === 2 ? 'Participant Details' : 'Booking Confirmed'}
+                    {currentStep === 1 ? (isPrivate ? 'Private Instruction' : 'Configure Your Program') : currentStep === 2 ? 'Participant Details' : 'Booking Confirmed'}
                 </h1>
                 <p className="text-slate-500">
                     {bookingData.programTitle ? `Booking for: ${bookingData.programTitle}` : 'Select a program to start'}
@@ -98,11 +106,19 @@ export default function Booking() {
             {/* Steps Render */}
             <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 md:p-10 min-h-[400px]">
                 {currentStep === 1 && (
-                    <StepSelection 
-                        bookingData={bookingData} 
-                        updateBookingData={updateBookingData} 
-                        onNext={nextStep} 
-                    />
+                    isPrivate ? (
+                        <StepCoachSelection 
+                            bookingData={bookingData}
+                            updateBookingData={updateBookingData}
+                            onNext={nextStep}
+                        />
+                    ) : (
+                        <StepSelection 
+                            bookingData={bookingData} 
+                            updateBookingData={updateBookingData} 
+                            onNext={nextStep} 
+                        />
+                    )
                 )}
                 {currentStep === 2 && (
                     <StepParticipants 

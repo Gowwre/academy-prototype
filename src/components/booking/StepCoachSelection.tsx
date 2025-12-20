@@ -1,0 +1,198 @@
+import { useState } from 'react';
+import { STAFF_MEMBERS } from '../../data/staff';
+
+interface StepCoachSelectionProps {
+  bookingData: any;
+  updateBookingData: (data: any) => void;
+  onNext: () => void;
+}
+
+export default function StepCoachSelection({ bookingData, updateBookingData, onNext }: StepCoachSelectionProps) {
+  const [selectedCoachId, setSelectedCoachId] = useState(bookingData.coachId || '');
+  const [selectedSlot, setSelectedSlot] = useState(bookingData.slot || '');
+  const [packageType, setPackageType] = useState(bookingData.packageType || 'single');
+  const [lessonFocus, setLessonFocus] = useState(bookingData.lessonFocus || '');
+  const [skillLevel, setSkillLevel] = useState(bookingData.skillLevel || '');
+
+  // Mock slots - in a real app this would fetch based on coach availability
+  const mockSlots = [
+    { id: 'slot-1', day: 'Mon', time: '10:00 AM' },
+    { id: 'slot-2', day: 'Mon', time: '2:00 PM' },
+    { id: 'slot-3', day: 'Wed', time: '11:00 AM' },
+    { id: 'slot-4', day: 'Thu', time: '4:00 PM' },
+    { id: 'slot-5', day: 'Fri', time: '9:00 AM' },
+  ];
+
+  const packages = [
+    { id: 'single', label: 'Single Session', price: '$80' },
+    { id: '5-pack', label: '5-Pack Bundle', price: '$375' },
+    { id: '10-pack', label: '10-Pack Bundle', price: '$700' },
+  ];
+
+  const focusOptions = [
+    { id: 'technique', label: 'Technique & Form', icon: 'sports_tennis' },
+    { id: 'strategy', label: 'Match Strategy', icon: 'psychology' },
+    { id: 'fitness', label: 'Pickleball Fitness', icon: 'fitness_center' },
+    { id: 'mental', label: 'Mental Game', icon: 'self_improvement' },
+  ];
+
+  const skillLevels = [
+    { id: 'beginner', label: 'Beginner (1.0 - 2.5)' },
+    { id: 'intermediate', label: 'Intermediate (3.0 - 3.5)' },
+    { id: 'advanced', label: 'Advanced (4.0 - 4.5)' },
+    { id: 'pro', label: 'Pro / Elite (5.0+)' },
+  ];
+
+  const handleContinue = () => {
+    const coach = STAFF_MEMBERS.find(s => s.id === selectedCoachId);
+    if (coach) {
+        updateBookingData({ 
+            coachId: selectedCoachId, 
+            coachName: coach.name,
+            slot: selectedSlot,
+            packageType,
+            price: packages.find(p => p.id === packageType)?.price,
+            lessonFocus,
+            skillLevel,
+            focusLabel: focusOptions.find(f => f.id === lessonFocus)?.label,
+            levelLabel: skillLevels.find(l => l.id === skillLevel)?.label,
+        });
+        onNext();
+    }
+  };
+
+  return (
+    <div className="flex flex-col gap-10">
+      
+      {/* 1. Select Coach */}
+      <div>
+        <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+          <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-sm">1</span>
+          Choose your Coach
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+          {STAFF_MEMBERS.map((staff) => (
+            <div 
+              key={staff.id}
+              onClick={() => setSelectedCoachId(staff.id)}
+              className={`cursor-pointer group relative p-4 rounded-2xl border-2 transition-all hover:shadow-md flex items-start gap-4 
+                ${selectedCoachId === staff.id ? 'border-primary bg-primary/5' : 'border-slate-100 bg-white'}`}
+            >
+              <img 
+                src={staff.imageUrl} 
+                alt={staff.name} 
+                className="w-16 h-16 rounded-full object-cover border border-slate-200"
+              />
+              <div className="flex-1">
+                <div className="flex justify-between items-start">
+                    <div>
+                        <h4 className="font-bold text-slate-900 group-hover:text-primary transition-colors">{staff.name}</h4>
+                        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">{staff.role}</p>
+                    </div>
+                     {selectedCoachId === staff.id && <span className="material-symbols-outlined text-primary">check_circle</span>}
+                </div>
+                <p className="text-sm text-slate-500 line-clamp-2">{staff.bio}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 2. Lesson Focus */}
+      <div>
+         <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+          <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-sm">2</span>
+          Lesson Focus
+        </h3>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+             {focusOptions.map((option) => (
+                <div
+                    key={option.id}
+                    onClick={() => setLessonFocus(option.id)}
+                    className={`cursor-pointer p-4 rounded-xl border-2 transition-all text-center flex flex-col items-center gap-2
+                        ${lessonFocus === option.id ? 'border-primary bg-primary/5' : 'border-slate-100 bg-white'}`}
+                >
+                    <span className={`material-symbols-outlined text-3xl ${lessonFocus === option.id ? 'text-primary' : 'text-slate-400'}`}>{option.icon}</span>
+                    <p className={`font-bold text-sm ${lessonFocus === option.id ? 'text-slate-900' : 'text-slate-600'}`}>{option.label}</p>
+                </div>
+             ))}
+        </div>
+      </div>
+
+       {/* 3. Skill Level */}
+       <div>
+         <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+          <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-sm">3</span>
+          Skill Level
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+             {skillLevels.map((level) => (
+                <div
+                    key={level.id}
+                    onClick={() => setSkillLevel(level.id)}
+                    className={`cursor-pointer p-4 rounded-xl border-2 transition-all flex items-center justify-between
+                        ${skillLevel === level.id ? 'border-primary bg-primary/5' : 'border-slate-100 bg-white'}`}
+                >
+                    <span className={`font-bold ${skillLevel === level.id ? 'text-slate-900' : 'text-slate-600'}`}>{level.label}</span>
+                    {skillLevel === level.id && <span className="material-symbols-outlined text-primary">check_circle</span>}
+                </div>
+             ))}
+        </div>
+      </div>
+
+      {/* 4. Select Package */}
+      <div>
+         <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+          <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-sm">4</span>
+          Select Package
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+             {packages.map((pkg) => (
+                <div
+                    key={pkg.id}
+                    onClick={() => setPackageType(pkg.id)}
+                    className={`cursor-pointer p-4 rounded-xl border-2 transition-all text-center
+                        ${packageType === pkg.id ? 'border-primary bg-primary/5' : 'border-slate-100 bg-white'}`}
+                >
+                    <p className="font-bold text-slate-900 mb-1">{pkg.label}</p>
+                    <p className="text-primary font-black text-lg">{pkg.price}</p>
+                </div>
+             ))}
+        </div>
+      </div>
+
+      {/* 5. Select Time */}
+      <div className={!selectedCoachId ? 'opacity-50 pointer-events-none grayscale' : ''}>
+        <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+          <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-sm">5</span>
+          Available Times
+        </h3>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+            {mockSlots.map((slot) => (
+                <div
+                    key={slot.id}
+                    onClick={() => setSelectedSlot(slot.time + ' ' + slot.day)}
+                    className={`cursor-pointer p-3 rounded-lg border text-center transition-all hover:border-primary
+                        ${selectedSlot === (slot.time + ' ' + slot.day) ? 'border-primary bg-primary text-white shadow-md' : 'border-slate-200 bg-white text-slate-600'}`}
+                >
+                    <p className="text-xs font-bold uppercase opacity-70 mb-1">{slot.day}</p>
+                    <p className="font-bold">{slot.time}</p>
+                </div>
+            ))}
+        </div>
+      </div>
+
+      {/* Action Bar */}
+      <div className="flex justify-end pt-6 border-t border-slate-100">
+        <button 
+            onClick={handleContinue}
+            disabled={!selectedCoachId || !selectedSlot || !lessonFocus || !skillLevel}
+            className="px-8 py-3 rounded-full bg-brand-gradient text-white font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+            Continue to Details
+        </button>
+      </div>
+
+    </div>
+  );
+}

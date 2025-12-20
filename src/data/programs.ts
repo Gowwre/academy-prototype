@@ -7,7 +7,7 @@ export interface Program {
   fullDescription: string;
   image: string;
   badge: string;
-  category: 'junior' | 'adult';
+  category: 'junior' | 'adult' | 'private';
   ageGroup?: string;
   rating?: number; // 0-5
   features: { icon: string; text: string }[];
@@ -95,5 +95,24 @@ export const programs: Program[] = [
     price: '$80', 
     pricePeriod: '/ season',
     ctaText: 'Join Waitlist',
+  },
+  {
+    id: 'private-1',
+    slug: 'private-lesson',
+    title: 'Private Instruction',
+    shortDescription: 'One-on-one or small group coaching tailored to your specific goals and skill level.',
+    fullDescription: 'Experience the fastest way to improve your game with personalized attention from our world-class coaches. Whether you need to fix a specific stroke, work on strategy, or get a high-intensity drill session, our private lessons are customized to your needs. Choose your preferred coach and schedule a time that works for you.',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC9J1ASh4fcV67sXYF9h9KM6_EOPYZzlkZHs4hacBgw6lMWmrAcuHSTd4NShTEd17jGjnSHsd9q9EUEWexG2eaFaQA1el7mZEwbgsMfg97f2-hAgy8d-ltZDtRTJ_qxoa0EZzDWAUt6fweOflomgsG7kmcWO6_gITvWgHi2DM43wZeG4IzsAxLOIGUVAYJsYgiBiJesdzn6ZA1lCKS_9g3bmsKSRS8MyhzfGTicPtIfRxqK272XGQzD-0ZoIHoTjYSIvy4nLQqzSJo',
+    badge: 'All Ages',
+    category: 'private',
+    features: [
+      { icon: 'person', text: '1-on-1 Coaching' },
+      { icon: 'videocam', text: 'Video Analysis' },
+      { icon: 'tune', text: 'Custom Plan' },
+    ],
+    schedule: 'Flexible',
+    price: '$80+',
+    pricePeriod: '/ hour',
+    ctaText: 'Book Coach',
   },
 ];

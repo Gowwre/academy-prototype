@@ -180,9 +180,9 @@ export default function Programs() {
                             <h2 className="text-white text-2xl md:text-3xl font-black mb-2">Private Instruction</h2>
                             <p className="text-white/90 font-medium max-w-md">Get 1-on-1 analysis with our certified pros. Video breakdown included with every package.</p>
                         </div>
-                        <button className="whitespace-nowrap rounded-full bg-white px-6 py-3 text-primary font-bold hover:bg-opacity-90 transition-opacity">
+                        <Link to="/booking?program=private-lesson" className="whitespace-nowrap rounded-full bg-white px-6 py-3 text-primary font-bold hover:bg-opacity-90 transition-opacity">
                              Book a Lesson
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>

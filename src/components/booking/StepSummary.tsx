@@ -59,10 +59,21 @@ export default function StepSummary({ bookingData, onBack }: StepSummaryProps) {
                     <p className="font-bold text-slate-900 text-lg">{bookingData.programTitle}</p>
                 </div>
                 <div className="pb-4 border-b border-slate-200">
-                    <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Session</p>
+                    <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">
+                        {bookingData.category === 'private' ? 'Details' : 'Session'}
+                    </p>
                     <p className="font-medium text-slate-700">
-                        {bookingData.session === 'oct-1' ? 'Oct 1 - Oct 30' : 
-                         bookingData.session === 'nov-1' ? 'Nov 1 - Nov 30' : 'Dec 1 - Dec 30'}
+                        {bookingData.category === 'private' ? (
+                            <>
+                                <span className="block text-slate-900 font-bold">{bookingData.coachName}</span>
+                                <span className="block text-sm">{bookingData.slot}</span>
+                                <span className="block text-sm text-slate-500 mt-1">{bookingData.focusLabel} • {bookingData.levelLabel}</span>
+                                <span className="block text-sm text-slate-500">{bookingData.packageType === 'single' ? 'Single Session' : bookingData.packageType === '5-pack' ? '5-Pack Bundle' : '10-Pack Bundle'}</span>
+                            </>
+                        ) : (
+                            bookingData.session === 'oct-1' ? 'Oct 1 - Oct 30' : 
+                            bookingData.session === 'nov-1' ? 'Nov 1 - Nov 30' : 'Dec 1 - Dec 30'
+                        )}
                     </p>
                 </div>
                  <div className="pb-4 border-b border-slate-200">
