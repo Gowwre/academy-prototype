@@ -1,5 +1,11 @@
 
+import { Link } from 'react-router-dom';
+import { programs } from '../data/programs';
+
 export default function Programs() {
+  const juniorPrograms = programs.filter(p => p.category === 'junior');
+  const adultPrograms = programs.filter(p => p.category === 'adult');
+
   return (
     <div className="w-full flex-col">
       {/* Hero Section */}
@@ -62,63 +68,38 @@ export default function Programs() {
                     </span>
                 </div>
                 <div className="flex flex-col gap-6 px-4">
-                    {/* Card 1 */}
-                    <div className="flex flex-col items-stretch justify-start rounded-2xl md:flex-row md:items-start shadow-md bg-white border border-gray-200 hover:border-primary/50 transition-colors group overflow-hidden">
-                        <div className="w-full md:w-[320px] bg-center bg-no-repeat aspect-video md:aspect-auto md:h-auto bg-cover shrink-0" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuDUgvwKpvJCQaoN9GW2GUHNPi-bCgc5oRyEKXeGkxsoaLgIxyS-Znb7vSxEhB43Np14vqTV-7tXaBCi8jwGbMqVXdy00Yp_epXeabmnFbmnsuGkkpOV0BPJ8IFC1ejvCHYHYcipIW5R57IpDol9idrT97966eZBE-u5AqlZKneRPy3Qf6St1xIb4MEFUI0mki15bdF7YbLASmZFyk74I0EDRPfbQIlFPJv1_3KWDNGNLeZCToIZsWWrVlvWv_ezrxX-vAwjTC_sHzk")' }}></div>
-                        <div className="flex w-full grow flex-col items-stretch justify-center gap-1 p-6">
-                            <div className="flex justify-between items-start mb-2">
-                                <p className="text-primary text-xs font-bold uppercase tracking-wider bg-slate-100 px-2 py-1 rounded-md">Ages 6-10</p>
-                                <div className="flex gap-1">
-                                    <span className="material-symbols-outlined text-yellow-500 text-sm">star</span>
-                                    <span className="material-symbols-outlined text-yellow-500 text-sm">star</span>
-                                    <span className="material-symbols-outlined text-yellow-500 text-sm">star</span>
-                                    <span className="material-symbols-outlined text-yellow-500 text-sm">star</span>
-                                    <span className="material-symbols-outlined text-slate-300 text-sm">star</span>
+                    {juniorPrograms.map((program) => (
+                        <div key={program.id} className="flex flex-col items-stretch justify-start rounded-2xl md:flex-row md:items-start shadow-md bg-white border border-gray-200 hover:border-primary/50 transition-colors group overflow-hidden">
+                            <div className="w-full md:w-[320px] bg-center bg-no-repeat aspect-video md:aspect-auto md:h-auto bg-cover shrink-0" style={{ backgroundImage: `url('${program.image}')` }}></div>
+                            <div className="flex w-full grow flex-col items-stretch justify-center gap-1 p-6">
+                                <div className="flex justify-between items-start mb-2">
+                                    <p className="text-primary text-xs font-bold uppercase tracking-wider bg-slate-100 px-2 py-1 rounded-md">{program.badge}</p>
+                                    <div className="flex gap-1">
+                                        {[...Array(program.rating)].map((_, i) => (
+                                            <span key={i} className="material-symbols-outlined text-yellow-500 text-sm">star</span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <h3 className="text-slate-900 text-xl font-bold leading-tight tracking-[-0.015em]">{program.title}</h3>
+                                <p className="text-slate-600 text-base font-normal leading-relaxed mt-2 mb-4">
+                                    {program.shortDescription}
+                                </p>
+                                <div className="grid grid-cols-2 gap-2 mb-6">
+                                    {program.features.map((feature, idx) => (
+                                        <div key={idx} className="flex items-center gap-2 text-slate-600 text-sm">
+                                            <span className="material-symbols-outlined text-primary text-sm">{feature.icon}</span> {feature.text}
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="flex items-center justify-between border-t border-gray-100 pt-4 mt-auto">
+                                    <span className="text-slate-900 font-bold">{program.price}<span className="text-slate-500 font-normal text-sm"> {program.pricePeriod}</span></span>
+                                    <Link to={`/programs/${program.slug}`} className="flex cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 bg-brand-gradient text-white text-sm font-bold leading-normal hover:shadow-lg transition-all">
+                                        <span className="truncate">{program.ctaText}</span>
+                                    </Link>
                                 </div>
                             </div>
-                            <h3 className="text-slate-900 text-xl font-bold leading-tight tracking-[-0.015em]">Future Stars Program</h3>
-                            <p className="text-slate-600 text-base font-normal leading-relaxed mt-2 mb-4">
-                                Build a solid foundation with fun, fundamental-focused training designed to ignite a passion for the sport.
-                            </p>
-                            <div className="grid grid-cols-2 gap-2 mb-6">
-                                <div className="flex items-center gap-2 text-slate-600 text-sm"><span className="material-symbols-outlined text-primary text-sm">check_circle</span> Motor Skills</div>
-                                <div className="flex items-center gap-2 text-slate-600 text-sm"><span className="material-symbols-outlined text-primary text-sm">check_circle</span> Hand-Eye Coord.</div>
-                                <div className="flex items-center gap-2 text-slate-600 text-sm"><span className="material-symbols-outlined text-primary text-sm">check_circle</span> Game Basics</div>
-                                <div className="flex items-center gap-2 text-slate-600 text-sm"><span className="material-symbols-outlined text-primary text-sm">check_circle</span> Teamwork</div>
-                            </div>
-                            <div className="flex items-center justify-between border-t border-gray-100 pt-4 mt-auto">
-                                <span className="text-slate-900 font-bold">$150<span className="text-slate-500 font-normal text-sm"> / month</span></span>
-                                <button className="flex cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 bg-brand-gradient text-white text-sm font-bold leading-normal hover:shadow-lg transition-all">
-                                    <span className="truncate">Register Now</span>
-                                </button>
-                            </div>
                         </div>
-                    </div>
-                    {/* Card 2 */}
-                    <div className="flex flex-col items-stretch justify-start rounded-2xl md:flex-row md:items-start shadow-md bg-white border border-gray-200 hover:border-primary/50 transition-colors group overflow-hidden">
-                        <div className="w-full md:w-[320px] bg-center bg-no-repeat aspect-video md:aspect-auto md:h-auto bg-cover shrink-0" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuChpPPc-mg24K_xNFAdTbK_dB9ZmmOmriTfPFbcUqCb7Q3gXd-NRw_KgVuUmIs8A_j63cy_W_ORyMl9qw50Xq06OqfAQRQ7WMAkukVCfrH3hlz_YZtGvMWmO9fuEY1llYWekjWQBG37K5IIe_QHNyYGf9b3GvoCtoHlk83SrBYo9bfkVBsu6KHSipYNH57Yi8H_QeqSwC2bDJiRSZptvkgF_uUCtscja8HntkrdDRU5VjaUsM0JO0Xw06DMyh2DyVvI4wXaChkC8XA")' }}></div>
-                        <div className="flex w-full grow flex-col items-stretch justify-center gap-1 p-6">
-                            <div className="flex justify-between items-start mb-2">
-                                <p className="text-primary text-xs font-bold uppercase tracking-wider bg-slate-100 px-2 py-1 rounded-md">Ages 11-18</p>
-                            </div>
-                            <h3 className="text-slate-900 text-xl font-bold leading-tight tracking-[-0.015em]">Elite Academy Squad</h3>
-                            <p className="text-slate-600 text-base font-normal leading-relaxed mt-2 mb-4">
-                                Advanced technical training and strategic development for competitive juniors aiming for tournament success.
-                            </p>
-                            <div className="grid grid-cols-2 gap-2 mb-6">
-                                <div className="flex items-center gap-2 text-slate-600 text-sm"><span className="material-symbols-outlined text-primary text-sm">check_circle</span> Advanced Tactics</div>
-                                <div className="flex items-center gap-2 text-slate-600 text-sm"><span className="material-symbols-outlined text-primary text-sm">check_circle</span> Match Analysis</div>
-                                <div className="flex items-center gap-2 text-slate-600 text-sm"><span className="material-symbols-outlined text-primary text-sm">check_circle</span> Tournament Prep</div>
-                                <div className="flex items-center gap-2 text-slate-600 text-sm"><span className="material-symbols-outlined text-primary text-sm">check_circle</span> Mental Toughness</div>
-                            </div>
-                            <div className="flex items-center justify-between border-t border-gray-100 pt-4 mt-auto">
-                                <span className="text-slate-900 font-bold">$225<span className="text-slate-500 font-normal text-sm"> / month</span></span>
-                                <button className="flex cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 bg-brand-gradient text-white text-sm font-bold leading-normal hover:shadow-lg transition-all">
-                                    <span className="truncate">Apply Now</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </div>
@@ -164,42 +145,27 @@ export default function Programs() {
                     </span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
-                    {/* Adult Card 1 */}
-                    <div className="flex flex-col rounded-2xl bg-white border border-gray-200 hover:border-primary/50 transition-all group overflow-hidden shadow-md">
-                        <div className="w-full h-48 bg-center bg-no-repeat bg-cover relative" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuAA-pDRXHrvAow7v7e6BxVmHIjd4-bXjEMMWTfqRiOAbfysmk7vTxmGgSm9YhleEUvMZRx-a6nwrpQWumPgC--7jZU2qKjMCnS4VDKgh5bCgiUr-xqDZoInhtJ_RLUl3xY8J-qRwatBH7xAIVqsFZ2YLFSbZlsv08tidh5rvHducjspSMFFm2DkXR94fCATA3QVq2GrYh-ybGHwW_JUo5z7metd0Zj4c7wa5difigXRXvQp1DASWqFiJVH4aLHMx9_27UBKslyB2HE")' }}>
-                            <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-slate-900 border border-gray-200">Beginner / Intermediate</div>
-                        </div>
-                        <div className="flex flex-col p-6 flex-grow">
-                            <h3 className="text-slate-900 text-xl font-bold mb-2">Skills Lab Clinics</h3>
-                            <p className="text-slate-600 text-sm mb-4 line-clamp-3">
-                                Weekly 90-minute sessions focusing on specific mechanics: dinking, third shot drops, and transition zone mastery.
-                            </p>
-                            <div className="mt-auto pt-4 border-t border-gray-200 flex items-center justify-between">
-                                <div className="flex items-center gap-1 text-slate-500 text-xs">
-                                    <span className="material-symbols-outlined text-base">schedule</span> Tue/Thu 6pm
+                    {adultPrograms.map((program) => (
+                        <div key={program.id} className="flex flex-col rounded-2xl bg-white border border-gray-200 hover:border-primary/50 transition-all group overflow-hidden shadow-md">
+                            <div className="w-full h-48 bg-center bg-no-repeat bg-cover relative" style={{ backgroundImage: `url('${program.image}')` }}>
+                                <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-slate-900 border border-gray-200">{program.badge}</div>
+                            </div>
+                            <div className="flex flex-col p-6 flex-grow">
+                                <h3 className="text-slate-900 text-xl font-bold mb-2">{program.title}</h3>
+                                <p className="text-slate-600 text-sm mb-4 line-clamp-3">
+                                    {program.shortDescription}
+                                </p>
+                                <div className="mt-auto pt-4 border-t border-gray-200 flex items-center justify-between">
+                                    <div className="flex items-center gap-1 text-slate-500 text-xs">
+                                        <span className="material-symbols-outlined text-base">schedule</span> {program.schedule}
+                                    </div>
+                                    <Link to={`/programs/${program.slug}`} className="text-primary font-bold text-sm hover:text-white transition-colors">
+                                        {program.ctaText}
+                                    </Link>
                                 </div>
-                                <button className="text-primary font-bold text-sm hover:text-white transition-colors">Learn More</button>
                             </div>
                         </div>
-                    </div>
-                    {/* Adult Card 2 */}
-                    <div className="flex flex-col rounded-2xl bg-white border border-gray-200 hover:border-primary/50 transition-all group overflow-hidden shadow-md">
-                        <div className="w-full h-48 bg-center bg-no-repeat bg-cover relative" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBw5RRXky1KgUHnhK3wbkoAX2XOKiRXwMsYaejwUwEJCV8_1k5ZkrjRNMfOCzmfjWMwLH4dnhkrz5itq09B2xvp2YtC5NfNtKRICUKz0uC5jmN8eZiclYjzLH4MNQlKiuUJV3EUjU7yZJxBpfQBFRMc1y9hO2EATXuwl90RaRh5bSywwAv8xnHYGjfC13TOSzdpkn4XD7E1g5A3u6COnIKuh0Q0jUFBmU9kYYZXbZZooH6jVNn8W2gxu0NKil9yR11iW2ZHs60jJoM")' }}>
-                            <div className="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg shadow-primary/20">Competitive</div>
-                        </div>
-                        <div className="flex flex-col p-6 flex-grow">
-                            <h3 className="text-slate-900 text-xl font-bold mb-2">Ladder League</h3>
-                            <p className="text-slate-600 text-sm mb-4 line-clamp-3">
-                                Our flagship competitive league. Move up or down courts weekly based on performance. Verified DUPR required.
-                            </p>
-                            <div className="mt-auto pt-4 border-t border-gray-200 flex items-center justify-between">
-                                <div className="flex items-center gap-1 text-slate-500 text-xs">
-                                    <span className="material-symbols-outlined text-base">calendar_month</span> Starts Oct 1st
-                                </div>
-                                <button className="text-primary font-bold text-sm hover:text-white transition-colors">Join Waitlist</button>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </div>
