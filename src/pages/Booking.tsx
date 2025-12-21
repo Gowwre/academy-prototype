@@ -6,6 +6,9 @@ import StepSelection from '../components/booking/StepSelection';
 import StepParticipants from '../components/booking/StepParticipants';
 import StepSummary from '../components/booking/StepSummary';
 import StepCoachSelection from '../components/booking/StepCoachSelection';
+import Container from '../components/design-system/Container';
+import { Heading, Text } from '../components/design-system/Typography';
+import Card from '../components/design-system/Card';
 
 export default function Booking() {
   const [searchParams] = useSearchParams();
@@ -62,24 +65,24 @@ export default function Booking() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-surface-subtle flex flex-col">
       {/* Header / Progress Bar */}
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-50 transition-shadow shadow-sm">
-        <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+      <header className="bg-surface-default border-b border-border-default sticky top-0 z-50 transition-shadow shadow-sm">
+        <Container className="h-20 flex items-center justify-between">
           <div className="flex items-center gap-2 cursor-pointer group" onClick={() => navigate(-1)}>
-             <span className="material-symbols-outlined text-slate-400 group-hover:text-slate-600 transition-colors">close</span>
-             <span className="text-slate-500 font-bold text-sm tracking-wider uppercase group-hover:text-slate-700 transition-colors">Cancel</span>
+             <span className="material-symbols-outlined text-text-tertiary group-hover:text-text-primary transition-colors">close</span>
+             <span className="text-text-tertiary font-bold text-sm tracking-wider uppercase group-hover:text-text-primary transition-colors">Cancel</span>
           </div>
           
           <div className="flex items-center gap-4 md:gap-8">
              {[1, 2, 3].map(step => (
-                <div key={step} className={`flex items-center gap-2 ${step === currentStep ? 'text-primary' : step < currentStep ? 'text-slate-900' : 'text-slate-300'}`}>
+                <div key={step} className={`flex items-center gap-2 ${step === currentStep ? 'text-primary' : step < currentStep ? 'text-text-primary' : 'text-text-tertiary'}`}>
                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border-2 transition-colors duration-300
                       ${step === currentStep ? 'border-primary text-primary' : 
-                        step < currentStep ? 'border-slate-900 bg-slate-900 text-white' : 'border-slate-200 text-slate-300'}`}>
+                        step < currentStep ? 'border-text-primary bg-text-primary text-surface-default' : 'border-border-default text-text-tertiary'}`}>
                       {step < currentStep ? <span className="material-symbols-outlined text-sm">check</span> : step}
                    </div>
-                   <span className={`hidden md:block font-bold text-sm uppercase tracking-wide ${step === currentStep ? 'text-primary' : 'text-slate-500'}`}>
+                   <span className={`hidden md:block font-bold text-sm uppercase tracking-wide ${step === currentStep ? 'text-primary' : 'text-text-tertiary'}`}>
                       {step === 1 ? (isPrivate ? 'Coach & Time' : 'Selection') : step === 2 ? 'Details' : 'Success'}
                    </span>
                 </div>
@@ -87,24 +90,24 @@ export default function Booking() {
           </div>
 
           <div className="w-20 hidden md:block"></div> {/* Spacer for center alignment */}
-        </div>
+        </Container>
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow container mx-auto px-4 py-8">
-        <div className="max-w-3xl mx-auto">
+      <main className="flex-grow py-8">
+        <Container className="max-w-3xl">
             {/* Context Header */}
             <div className="text-center mb-10">
-                <h1 className="text-3xl font-black text-slate-900 mb-2">
+                <Heading as="h1" variant="h2" className="text-text-primary mb-2">
                     {currentStep === 1 ? (isPrivate ? 'Private Instruction' : 'Configure Your Program') : currentStep === 2 ? 'Participant Details' : 'Booking Confirmed'}
-                </h1>
-                <p className="text-slate-500">
+                </Heading>
+                <Text className="text-text-secondary">
                     {bookingData.programTitle ? `Booking for: ${bookingData.programTitle}` : 'Select a program to start'}
-                </p>
+                </Text>
             </div>
 
             {/* Steps Render */}
-            <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 md:p-10 min-h-[400px]">
+            <Card variant="elevated" className="p-6 md:p-10 min-h-[400px]">
                 {currentStep === 1 && (
                     isPrivate ? (
                         <StepCoachSelection 
@@ -134,8 +137,8 @@ export default function Booking() {
                         onBack={prevStep} 
                     />
                 )}
-            </div>
-        </div>
+            </Card>
+        </Container>
       </main>
     </div>
   );

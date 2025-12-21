@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { STAFF_MEMBERS, type StaffMember } from '../../data/staff';
 import StaffDetailModal from '../about/StaffDetailModal';
+import { Heading, Text } from '../design-system/Typography';
+import Button from '../design-system/Button';
+
 
 interface StepCoachSelectionProps {
   bookingData: any;
@@ -68,28 +71,28 @@ export default function StepCoachSelection({ bookingData, updateBookingData, onN
       
       {/* 1. Select Coach */}
       <div>
-        <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-          <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-sm">1</span>
+        <Heading as="h3" variant="h4" className="text-text-primary mb-6 flex items-center gap-2">
+          <span className="w-8 h-8 rounded-full bg-surface-highlight flex items-center justify-center text-sm">1</span>
           Choose your Coach
-        </h3>
+        </Heading>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
           {STAFF_MEMBERS.map((staff) => (
             <div 
               key={staff.id}
               onClick={() => setSelectedCoachId(staff.id)}
               className={`cursor-pointer group relative p-4 rounded-2xl border-2 transition-all hover:shadow-md flex items-start gap-4 
-                ${selectedCoachId === staff.id ? 'border-primary bg-primary/5' : 'border-slate-100 bg-white'}`}
+                ${selectedCoachId === staff.id ? 'border-primary bg-primary/5' : 'border-border-subtle bg-surface-default'}`}
             >
               <img 
                 src={staff.imageUrl} 
                 alt={staff.name} 
-                className="w-16 h-16 rounded-full object-cover border border-slate-200"
+                className="w-16 h-16 rounded-full object-cover border border-border-default"
               />
               <div className="flex-1">
                 <div className="flex justify-between items-start">
                     <div>
-                        <h4 className="font-bold text-slate-900 group-hover:text-primary transition-colors">{staff.name}</h4>
-                        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">{staff.role}</p>
+                        <h4 className="font-bold text-text-primary group-hover:text-primary transition-colors">{staff.name}</h4>
+                        <Text className="text-xs font-bold text-text-tertiary uppercase tracking-wider mb-1">{staff.role}</Text>
                     </div>
                     <div className="flex items-center gap-2">
                          <button 
@@ -98,7 +101,7 @@ export default function StepCoachSelection({ bookingData, updateBookingData, onN
                                 e.stopPropagation();
                                 setViewingStaff(staff);
                             }}
-                            className="p-1 px-2 rounded-lg bg-slate-100 text-slate-400 hover:text-primary transition-colors flex items-center gap-1"
+                            className="p-1 px-2 rounded-lg bg-surface-highlight text-text-tertiary hover:text-primary transition-colors flex items-center gap-1"
                          >
                             <span className="material-symbols-outlined text-[18px]">info</span>
                             <span className="text-[10px] font-bold uppercase">Info</span>
@@ -106,7 +109,7 @@ export default function StepCoachSelection({ bookingData, updateBookingData, onN
                          {selectedCoachId === staff.id && <span className="material-symbols-outlined text-primary">check_circle</span>}
                     </div>
                 </div>
-                <p className="text-sm text-slate-500 line-clamp-2">{staff.bio}</p>
+                <Text className="text-sm text-text-secondary line-clamp-2">{staff.bio}</Text>
               </div>
             </div>
           ))}
@@ -115,20 +118,20 @@ export default function StepCoachSelection({ bookingData, updateBookingData, onN
 
       {/* 2. Lesson Focus */}
       <div>
-         <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-          <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-sm">2</span>
+         <Heading as="h3" variant="h4" className="text-text-primary mb-6 flex items-center gap-2">
+          <span className="w-8 h-8 rounded-full bg-surface-highlight flex items-center justify-center text-sm">2</span>
           Lesson Focus
-        </h3>
+        </Heading>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
              {focusOptions.map((option) => (
                 <div
                     key={option.id}
                     onClick={() => setLessonFocus(option.id)}
                     className={`cursor-pointer p-4 rounded-xl border-2 transition-all text-center flex flex-col items-center gap-2
-                        ${lessonFocus === option.id ? 'border-primary bg-primary/5' : 'border-slate-100 bg-white'}`}
+                        ${lessonFocus === option.id ? 'border-primary bg-primary/5' : 'border-border-subtle bg-surface-default'}`}
                 >
-                    <span className={`material-symbols-outlined text-3xl ${lessonFocus === option.id ? 'text-primary' : 'text-slate-400'}`}>{option.icon}</span>
-                    <p className={`font-bold text-sm ${lessonFocus === option.id ? 'text-slate-900' : 'text-slate-600'}`}>{option.label}</p>
+                    <span className={`material-symbols-outlined text-3xl ${lessonFocus === option.id ? 'text-primary' : 'text-text-tertiary'}`}>{option.icon}</span>
+                    <p className={`font-bold text-sm ${lessonFocus === option.id ? 'text-text-primary' : 'text-text-secondary'}`}>{option.label}</p>
                 </div>
              ))}
         </div>
@@ -136,19 +139,19 @@ export default function StepCoachSelection({ bookingData, updateBookingData, onN
 
        {/* 3. Skill Level */}
        <div>
-         <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-          <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-sm">3</span>
+         <Heading as="h3" variant="h4" className="text-text-primary mb-6 flex items-center gap-2">
+          <span className="w-8 h-8 rounded-full bg-surface-highlight flex items-center justify-center text-sm">3</span>
           Skill Level
-        </h3>
+        </Heading>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
              {skillLevels.map((level) => (
                 <div
                     key={level.id}
                     onClick={() => setSkillLevel(level.id)}
                     className={`cursor-pointer p-4 rounded-xl border-2 transition-all flex items-center justify-between
-                        ${skillLevel === level.id ? 'border-primary bg-primary/5' : 'border-slate-100 bg-white'}`}
+                        ${skillLevel === level.id ? 'border-primary bg-primary/5' : 'border-border-subtle bg-surface-default'}`}
                 >
-                    <span className={`font-bold ${skillLevel === level.id ? 'text-slate-900' : 'text-slate-600'}`}>{level.label}</span>
+                    <span className={`font-bold ${skillLevel === level.id ? 'text-text-primary' : 'text-text-secondary'}`}>{level.label}</span>
                     {skillLevel === level.id && <span className="material-symbols-outlined text-primary">check_circle</span>}
                 </div>
              ))}
@@ -157,19 +160,19 @@ export default function StepCoachSelection({ bookingData, updateBookingData, onN
 
       {/* 4. Select Package */}
       <div>
-         <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-          <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-sm">4</span>
+         <Heading as="h3" variant="h4" className="text-text-primary mb-6 flex items-center gap-2">
+          <span className="w-8 h-8 rounded-full bg-surface-highlight flex items-center justify-center text-sm">4</span>
           Select Package
-        </h3>
+        </Heading>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
              {packages.map((pkg) => (
                 <div
                     key={pkg.id}
                     onClick={() => setPackageType(pkg.id)}
                     className={`cursor-pointer p-4 rounded-xl border-2 transition-all text-center
-                        ${packageType === pkg.id ? 'border-primary bg-primary/5' : 'border-slate-100 bg-white'}`}
+                        ${packageType === pkg.id ? 'border-primary bg-primary/5' : 'border-border-subtle bg-surface-default'}`}
                 >
-                    <p className="font-bold text-slate-900 mb-1">{pkg.label}</p>
+                    <p className="font-bold text-text-primary mb-1">{pkg.label}</p>
                     <p className="text-primary font-black text-lg">{pkg.price}</p>
                 </div>
              ))}
@@ -178,17 +181,17 @@ export default function StepCoachSelection({ bookingData, updateBookingData, onN
 
       {/* 5. Select Time */}
       <div className={!selectedCoachId ? 'opacity-50 pointer-events-none grayscale' : ''}>
-        <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-          <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-sm">5</span>
+        <Heading as="h3" variant="h4" className="text-text-primary mb-6 flex items-center gap-2">
+          <span className="w-8 h-8 rounded-full bg-surface-highlight flex items-center justify-center text-sm">5</span>
           Available Times
-        </h3>
+        </Heading>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
             {mockSlots.map((slot) => (
                 <div
                     key={slot.id}
                     onClick={() => setSelectedSlot(slot.time + ' ' + slot.day)}
                     className={`cursor-pointer p-3 rounded-lg border text-center transition-all hover:border-primary
-                        ${selectedSlot === (slot.time + ' ' + slot.day) ? 'border-primary bg-primary text-white shadow-md' : 'border-slate-200 bg-white text-slate-600'}`}
+                        ${selectedSlot === (slot.time + ' ' + slot.day) ? 'border-primary bg-primary text-white shadow-md' : 'border-border-subtle bg-surface-default text-text-secondary'}`}
                 >
                     <p className="text-xs font-bold uppercase opacity-70 mb-1">{slot.day}</p>
                     <p className="font-bold">{slot.time}</p>
@@ -198,14 +201,15 @@ export default function StepCoachSelection({ bookingData, updateBookingData, onN
       </div>
 
       {/* Action Bar */}
-      <div className="flex justify-end pt-6 border-t border-slate-100">
-        <button 
+      <div className="flex justify-end pt-6 border-t border-border-default">
+        <Button 
             onClick={handleContinue}
             disabled={!selectedCoachId || !selectedSlot || !lessonFocus || !skillLevel}
-            className="px-8 py-3 rounded-full bg-brand-gradient text-white font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            size="lg"
+            className="shadow-lg hover:shadow-xl hover:scale-105 transition-all"
         >
             Continue to Details
-        </button>
+        </Button>
       </div>
 
       {/* Detail Modal */}

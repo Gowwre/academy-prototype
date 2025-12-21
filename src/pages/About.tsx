@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { STAFF_MEMBERS } from '../data/staff';
 import StaffDetailModal from '../components/about/StaffDetailModal';
