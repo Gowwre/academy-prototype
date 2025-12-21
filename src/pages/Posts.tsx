@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
 import PostCard from '../components/posts/PostCard';
+import Container from '../components/design-system/Container';
+import { Heading, Text } from '../components/design-system/Typography';
+import Button from '../components/design-system/Button';
+import Card from '../components/design-system/Card';
+import Input from '../components/design-system/Input';
 
 const MOCK_POSTS = [
   {
@@ -180,85 +185,83 @@ export default function Posts() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
+    <div className="min-h-screen bg-surface-subtle pb-20">
       {/* Header */}
-      <section className="bg-slate-900 py-20 relative overflow-hidden">
+      <section className="bg-text-primary py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://lh3.googleusercontent.com/aida-public/AB6AXuDRjvf40oYxauAFwuWNkL0fTS_qDWxbc7jtH2z7Um_zh5LdGNwyOL6WpG3Tsd5tiF-VEZqJhiabYmTq6p9W2C1S5j2wcYnJIw6sl5ppFrEiry0o-j6DlyMwrThsqUzZy90T6iOPJSMx5AKrlEWEtWYSnU8FR6FG5vaOGQ5glLQqjFfMGrJUKTWa25yTZzdELqDsWXa75EqMghC2ylv8sKIwEmgkHE1O2cKiRoJ39EFi_xnII01SQqP98ZVdXJtbMoq5yWTDYEdzaWU')] bg-cover bg-center opacity-20"></div>
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <Container className="relative z-10">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-black text-white mb-6">
+            <Heading as="h1" variant="h1" className="text-white mb-6">
               ACADEMY <span className="text-transparent bg-clip-text bg-brand-gradient">NEWS</span>
-            </h1>
-            <p className="text-lg text-slate-300 font-medium">
+            </Heading>
+            <Text variant="body-lg" className="text-white/80">
               Stay updated with the latest tournament results, facility upgrades, and player success stories.
-            </p>
+            </Text>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Content */}
-      <section className="container mx-auto px-4 md:px-6 -mt-10 relative z-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {currentItems.map((post) => (
-            <PostCard key={post.id} {...post} />
-          ))}
-        </div>
+      <section className="relative z-20 -mt-10">
+        <Container>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {currentItems.map((post) => (
+              <PostCard key={post.id} {...post} />
+            ))}
+          </div>
 
-        {/* Pagination Controls */}
-        {totalPages > 1 && (
-            <div className="flex justify-center items-center gap-2 mt-12">
-                <button 
-                  onClick={goToPrev}
-                  disabled={currentPage === 1}
-                  className={`w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 transition-all ${
-                    currentPage === 1 
-                        ? 'text-gray-300 cursor-not-allowed' 
-                        : 'text-slate-600 hover:bg-white hover:shadow-md hover:border-primary/50'
-                  }`}
-                >
-                    <span className="material-symbols-outlined">chevron_left</span>
-                </button>
-                
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
-                    <button
-                        key={number}
-                        onClick={() => paginate(number)}
-                        className={`w-10 h-10 flex items-center justify-center rounded-full text-sm font-bold transition-all ${
-                            currentPage === number
-                                ? 'bg-brand-gradient text-white shadow-lg'
-                                : 'bg-white text-slate-600 border border-gray-200 hover:border-primary/50 hover:shadow-md'
-                        }`}
-                    >
-                        {number}
-                    </button>
-                ))}
-
-                <button 
-                  onClick={goToNext}
-                  disabled={currentPage === totalPages}
-                  className={`w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 transition-all ${
-                    currentPage === totalPages 
-                        ? 'text-gray-300 cursor-not-allowed' 
-                        : 'text-slate-600 hover:bg-white hover:shadow-md hover:border-primary/50'
-                  }`}
-                >
-                    <span className="material-symbols-outlined">chevron_right</span>
-                </button>
-            </div>
-        )}
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+              <div className="flex justify-center items-center gap-2 mt-12">
+                  <Button 
+                    variant="secondary"
+                    size="sm"
+                    onClick={goToPrev}
+                    disabled={currentPage === 1}
+                    className="w-10 h-10 p-0 rounded-full"
+                    leftIcon={<span className="material-symbols-outlined">chevron_left</span>}
+                  />
+                  
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
+                      <Button
+                          key={number}
+                          variant={currentPage === number ? 'primary' : 'secondary'}
+                          size="sm"
+                          onClick={() => paginate(number)}
+                          className={`w-10 h-10 p-0 rounded-full text-sm font-bold shadow-sm ${
+                              currentPage === number ? 'ring-2 ring-primary ring-offset-2' : ''
+                          }`}
+                      >
+                          {number}
+                      </Button>
+                  ))}
+  
+                  <Button 
+                    variant="secondary"
+                    size="sm"
+                    onClick={goToNext}
+                    disabled={currentPage === totalPages}
+                    className="w-10 h-10 p-0 rounded-full"
+                    leftIcon={<span className="material-symbols-outlined">chevron_right</span>}
+                  />
+              </div>
+          )}
+        </Container>
       </section>
       
       {/* Newsletter / CTA */}
-      <section className="container mx-auto px-4 md:px-6 mt-20">
-         <div className="bg-white rounded-[2rem] p-8 md:p-12 border border-slate-100 shadow-sm text-center max-w-4xl mx-auto">
+      <section className="mt-20">
+        <Container>
+          <Card variant="elevated" className="rounded-[2rem] p-8 md:p-12 border border-border-subtle shadow-sm text-center max-w-4xl mx-auto">
             <span className="material-symbols-outlined text-4xl text-primary mb-4">mail</span>
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Never Miss an Update</h2>
-            <p className="text-slate-600 mb-8 max-w-lg mx-auto">Subscribe to our weekly newsletter for training tips, upcoming event schedules, and exclusive academy announcements.</p>
+            <Heading as="h2" variant="h2" className="text-text-primary mb-4">Never Miss an Update</Heading>
+            <Text className="text-text-secondary mb-8 max-w-lg mx-auto">Subscribe to our weekly newsletter for training tips, upcoming event schedules, and exclusive academy announcements.</Text>
             <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
-                <input type="email" placeholder="Your email address" className="flex-1 px-6 py-3 rounded-full border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" />
-                <button className="px-8 py-3 rounded-full bg-slate-900 text-white font-bold hover:bg-slate-800 transition-colors">Subscribe</button>
+                <Input type="email" placeholder="Your email address" className="flex-1" />
+                <Button variant="primary" className="px-8 shadow-md">Subscribe</Button>
             </div>
-         </div>
+          </Card>
+        </Container>
       </section>
     </div>
   );

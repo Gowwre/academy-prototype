@@ -1,5 +1,9 @@
 import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import Container from '../components/design-system/Container';
+import { Heading, Text } from '../components/design-system/Typography';
+import Badge from '../components/design-system/Badge';
+import Button from '../components/design-system/Button';
 
 // Static mock data as requested
 import { LEARNING_RESOURCES } from '../data/learningResources';
@@ -53,84 +57,84 @@ export default function PostDetail() {
   }, [id]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface-default">
       {/* Hero Section */}
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url('${post.image}')` }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-text-primary via-text-primary/50 to-transparent"></div>
         
         <div className="absolute bottom-0 left-0 w-full p-8 md:p-12 lg:p-20">
-          <div className="container mx-auto max-w-4xl">
+          <Container className="max-w-4xl">
              <Link to="/posts" className="inline-flex items-center text-white/80 hover:text-white mb-6 transition-colors font-medium">
                 <span className="material-symbols-outlined mr-2">arrow_back</span>
                 Back to News
              </Link>
              <div className="flex items-center gap-4 mb-4">
-                <span className="px-3 py-1 rounded-full bg-primary text-white text-xs font-bold uppercase tracking-wider">
+                <Badge variant="brand" className="uppercase tracking-wider">
                     {post.category}
-                </span>
+                </Badge>
                 <span className="text-white/80 text-sm font-medium border-l border-white/20 pl-4">{post.date}</span>
              </div>
-             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-4">
+             <Heading as="h1" variant="h1" className="text-white leading-tight mb-4">
                 {post.title}
-             </h1>
+             </Heading>
              <div className="flex items-center gap-2 text-white/80">
                 <span className="material-symbols-outlined text-lg">edit</span>
                 <span className="text-sm font-bold uppercase tracking-wide">By {post.author}</span>
              </div>
-          </div>
+          </Container>
         </div>
       </section>
 
       {/* Content Body */}
-      <section className="py-20 px-4 md:px-6">
-        <div className="container mx-auto max-w-3xl">
+      <section className="py-20">
+        <Container className="max-w-3xl">
             <div 
                 className="prose prose-lg md:prose-xl prose-slate mx-auto 
-                prose-headings:font-bold prose-headings:text-slate-900 
-                prose-p:text-slate-600 prose-p:leading-relaxed 
+                prose-headings:font-bold prose-headings:text-text-primary 
+                prose-p:text-text-secondary prose-p:leading-relaxed 
                 prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-                prose-strong:text-slate-900 prose-strong:font-bold"
+                prose-strong:text-text-primary prose-strong:font-bold"
                 dangerouslySetInnerHTML={{ __html: post.content }}
             ></div>
 
             {/* Tags / Share (Visual Only) */}
-            <div className="mt-12 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="mt-12 pt-8 border-t border-border-subtle flex flex-col md:flex-row justify-between items-center gap-6">
                 <div className="flex gap-2">
                     {['Tournament', 'U16', 'Success'].map(tag => (
-                        <span key={tag} className="px-4 py-2 bg-gray-50 rounded-lg text-slate-500 text-sm font-medium hover:bg-gray-100 transition-colors cursor-pointer">#{tag}</span>
+                        <Badge key={tag} variant="neutral" className="px-4 py-2 bg-surface-subtle hover:bg-surface-highlight transition-colors cursor-pointer border-none shadow-none text-text-tertiary">#{tag}</Badge>
                     ))}
                 </div>
                 <div className="flex items-center gap-4">
-                    <span className="text-slate-400 text-sm font-bold uppercase">Share:</span>
-                    <button className="w-10 h-10 rounded-full bg-facebook text-white flex items-center justify-center hover:opacity-90 transition-opacity bg-[#1877F2]">
+                    <Text variant="caption" className="text-text-tertiary font-bold uppercase">Share:</Text>
+                    <button className="w-10 h-10 rounded-full bg-[#1877F2] text-white flex items-center justify-center hover:opacity-90 transition-opacity">
                          <span className="font-bold text-lg">f</span>
                     </button>
-                    <button className="w-10 h-10 rounded-full bg-twitter text-white flex items-center justify-center hover:opacity-90 transition-opacity bg-[#1DA1F2]">
+                    <button className="w-10 h-10 rounded-full bg-[#1DA1F2] text-white flex items-center justify-center hover:opacity-90 transition-opacity">
                          <span className="font-bold text-lg">𝕏</span>
                     </button>
-                    <button className="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center hover:opacity-90 transition-opacity">
+                    <button className="w-10 h-10 rounded-full bg-text-primary text-white flex items-center justify-center hover:opacity-90 transition-opacity">
                          <span className="material-symbols-outlined text-sm">link</span>
                     </button>
                 </div>
             </div>
-        </div>
+        </Container>
       </section>
 
       {/* Next Article Preview (Optional Visual) */}
-      <section className="bg-gray-50 py-20 border-t border-gray-200">
-        <div className="container mx-auto px-4 text-center">
-            <p className="text-slate-500 font-bold uppercase tracking-wider mb-4">Up Next</p>
-            <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6 hover:text-primary cursor-pointer transition-colors">
+      <section className="bg-surface-subtle py-20 border-t border-border-subtle">
+        <Container className="text-center">
+            <Text variant="caption" className="text-text-tertiary font-bold uppercase tracking-wider mb-4">Up Next</Text>
+            <Heading as="h3" variant="h3" className="text-text-primary mb-6 hover:text-primary cursor-pointer transition-colors">
                 New High-Performance Training Facility Opens
-            </h3>
-            <Link to="/posts" className="inline-flex items-center justify-center h-12 px-8 rounded-full border-2 border-slate-900 text-slate-900 font-bold hover:bg-slate-900 hover:text-white transition-all">
+            </Heading>
+            <Button to="/posts" variant="outline" size="lg" className="border-text-primary text-text-primary hover:bg-text-primary hover:text-white">
                 Read Next Article
-            </Link>
-        </div>
+            </Button>
+        </Container>
       </section>
     </div>
   );
