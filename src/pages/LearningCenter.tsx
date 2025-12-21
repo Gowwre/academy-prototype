@@ -1,6 +1,13 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { LEARNING_RESOURCES, type Category, type DifficultyLevel } from '../data/learningResources';
+import Container from '../components/design-system/Container';
+import { Heading, Text } from '../components/design-system/Typography';
+import Button from '../components/design-system/Button';
+import Card from '../components/design-system/Card';
+import Badge from '../components/design-system/Badge';
+import Input from '../components/design-system/Input';
+import Box from '../components/design-system/Box';
 
 export default function LearningCenter() {
   const [selectedCategory, setSelectedCategory] = useState<Category | 'All'>('All');
@@ -15,175 +22,180 @@ export default function LearningCenter() {
     });
   }, [selectedCategory, searchQuery]);
 
-  // Color mapping for category badges
-  const getCategoryColor = (cat: Category) => {
-    switch (cat) {
-      case 'Technique': return 'bg-blue-100 text-blue-700';
-      case 'Strategy': return 'bg-purple-100 text-purple-700';
-      case 'Fitness': return 'bg-orange-100 text-orange-700';
-      case 'Mental Game': return 'bg-teal-100 text-teal-700';
-      case 'Equipment': return 'bg-gray-100 text-gray-700';
-      default: return 'bg-slate-100 text-slate-700';
+  // Difficulty badge style
+  const getDifficultyVariant = (diff: DifficultyLevel): "neutral" | "brand" | "success" | "warning" | "error" => {
+    switch (diff) {
+      case 'Beginner': return 'success';
+      case 'Intermediate': return 'warning';
+      case 'Advanced': return 'error';
+      default: return 'neutral';
     }
   };
 
-  // Difficulty badge style
-  const getDifficultyColor = (diff: DifficultyLevel) => {
-    switch (diff) {
-      case 'Beginner': return 'text-green-600';
-      case 'Intermediate': return 'text-yellow-600';
-      case 'Advanced': return 'text-red-600';
+  const getCategoryVariant = (cat: Category): "neutral" | "brand" | "success" | "warning" | "error" => {
+    switch (cat) {
+      case 'Technique': return 'brand';
+      case 'Strategy': return 'brand';
+      case 'Fitness': return 'warning';
+      case 'Mental Game': return 'success';
+      case 'Equipment': return 'neutral';
+      default: return 'neutral';
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
+    <div className="min-h-screen bg-surface-subtle pb-20">
       {/* Hero Section */}
-      <section className="bg-slate-900 py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900 to-slate-800 z-0"></div>
-        {/* Animated background elements could go here */}
-        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
-          <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
+      <section className="bg-text-primary py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-text-primary to-surface-default/10 z-0"></div>
+        <Container className="relative z-10 text-center">
+          <Heading as="h1" variant="display" className="text-white mb-6 tracking-tight">
             LEARNING <span className="text-transparent bg-clip-text bg-brand-gradient">CENTER</span>
-          </h1>
-          <p className="text-xl text-slate-300 font-medium max-w-2xl mx-auto mb-10">
+          </Heading>
+          <Text variant="body-lg" className="text-white/80 max-w-2xl mx-auto mb-10">
             Elevate your game with expert insights, professional drills, and strategic analysis tailored for every level.
-          </p>
+          </Text>
           
           {/* Search Bar - Floating */}
           <div className="max-w-xl mx-auto relative group">
             <div className="absolute inset-0 bg-brand-gradient rounded-full blur opacity-25 group-hover:opacity-40 transition-opacity"></div>
-            <div className="relative flex items-center bg-white rounded-full p-2 shadow-2xl">
-              <span className="material-symbols-outlined text-slate-400 ml-4 font-variation-settings-light">search</span>
-              <input 
-                type="text" 
-                placeholder="Search topics, drills, or guides..." 
-                className="flex-1 px-4 py-3 outline-none text-slate-700 placeholder-slate-400 font-medium bg-transparent"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <button className="bg-slate-900 text-white px-6 py-3 rounded-full font-bold hover:bg-slate-800 transition-colors">
+            <div className="relative flex items-center bg-surface-default rounded-full p-2 shadow-2xl">
+              <div className="flex-1">
+                <Input 
+                  placeholder="Search topics, drills, or guides..." 
+                  className="border-none bg-transparent focus:ring-0 shadow-none px-6"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  leftIcon={<span className="material-symbols-outlined text-text-tertiary">search</span>}
+                />
+              </div>
+              <Button size="lg" className="rounded-full shadow-lg">
                 Search
-              </button>
+              </Button>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Main Content Area */}
-      <section className="container mx-auto px-4 md:px-6 -mt-10 relative z-20">
-        
-        {/* Category Pills */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {['All', 'Technique', 'Strategy', 'Fitness', 'Mental Game', 'Equipment'].map((cat) => (
-             <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat as any)}
-                className={`px-6 py-2 rounded-full font-bold text-sm transition-all shadow-sm ${
-                    selectedCategory === cat 
-                        ? 'bg-white text-slate-900 ring-2 ring-primary ring-offset-2' 
-                        : 'bg-white/90 text-slate-600 hover:bg-white hover:text-primary backdrop-blur-sm'
-                }`}
-             >
-                {cat}
-             </button>
-          ))}
-        </div>
-
-        {/* Resources Grid */}
-        {filteredResources.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredResources.map((resource) => (
-                <article 
-                    key={resource.id} 
-                    className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col h-full"
-                >
-                    {/* Image Container */}
-                    <div className="relative h-56 overflow-hidden">
-                        <img 
-                            src={resource.image} 
-                            alt={resource.title} 
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                        <div className="absolute top-4 left-4">
-                            <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${getCategoryColor(resource.category)}`}>
-                                {resource.category}
-                            </span>
-                        </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-8 flex flex-col flex-grow">
-                        <div className="flex items-center gap-3 mb-4 text-xs font-bold tracking-wide">
-                            <span className={`${getDifficultyColor(resource.difficulty)} flex items-center gap-1`}>
-                                <span className="material-symbols-outlined text-sm">signal_cellular_alt</span>
-                                {resource.difficulty}
-                            </span>
-                            <span className="text-slate-300">•</span>
-                            <span className="text-slate-500 flex items-center gap-1">
-                                <span className="material-symbols-outlined text-sm">schedule</span>
-                                {resource.readTime}
-                            </span>
-                        </div>
-
-                        <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                            {resource.title}
-                        </h3>
-                        
-                        <p className="text-slate-600 mb-6 flex-grow line-clamp-3 leading-relaxed">
-                            {resource.excerpt}
-                        </p>
-
-                        <div className="pt-6 border-t border-slate-50 flex items-center justify-between">
-                            <span className="text-xs text-slate-400 font-medium">{resource.date}</span>
-                            <Link 
-                                to={`/posts/${resource.id}`} 
-                                className="text-sm font-bold text-slate-900 group-hover:text-primary flex items-center gap-1 transition-colors"
-                            >
-                                Read Article <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                            </Link>
-                        </div>
-                    </div>
-                </article>
+      <section className="relative z-20 -mt-10">
+        <Container>
+          {/* Category Pills */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {['All', 'Technique', 'Strategy', 'Fitness', 'Mental Game', 'Equipment'].map((cat) => (
+               <Button
+                  key={cat}
+                  variant={selectedCategory === cat ? 'primary' : 'secondary'}
+                  size="sm"
+                  onClick={() => setSelectedCategory(cat as any)}
+                  className={`rounded-full shadow-sm hover:scale-105 transition-transform ${
+                    selectedCategory === cat ? 'ring-2 ring-primary ring-offset-2' : 'bg-surface-default/90 backdrop-blur-sm'
+                  }`}
+               >
+                  {cat}
+               </Button>
             ))}
-            </div>
-        ) : (
-            <div className="text-center py-20 bg-white rounded-3xl border border-dashed border-slate-200">
-                <span className="material-symbols-outlined text-6xl text-slate-200 mb-4">search_off</span>
-                <h3 className="text-xl font-bold text-slate-900">No resources found</h3>
-                <p className="text-slate-500">Try adjusting your search or filter criteria.</p>
-                <button 
-                    onClick={() => {setSelectedCategory('All'); setSearchQuery('')}}
-                    className="mt-6 text-primary font-bold hover:underline"
-                >
-                    Clear all filters
-                </button>
-            </div>
-        )}
+          </div>
 
+          {/* Resources Grid */}
+          {filteredResources.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredResources.map((resource) => (
+                  <Card 
+                      key={resource.id} 
+                      variant="elevated"
+                      className="group overflow-hidden flex flex-col h-full p-0 border-border-subtle"
+                  >
+                      {/* Image Container */}
+                      <div className="relative h-56 overflow-hidden">
+                          <img 
+                              src={resource.image} 
+                              alt={resource.title} 
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute top-4 left-4">
+                              <Badge variant={getCategoryVariant(resource.category)} size="sm" className="uppercase tracking-wider">
+                                  {resource.category}
+                              </Badge>
+                          </div>
+                      </div>
+  
+                      {/* Content */}
+                      <div className="p-8 flex flex-col flex-grow">
+                          <div className="flex items-center gap-3 mb-4">
+                              <Badge variant={getDifficultyVariant(resource.difficulty)} size="sm" className="flex items-center gap-1">
+                                  <span className="material-symbols-outlined text-xs">signal_cellular_alt</span>
+                                  {resource.difficulty}
+                              </Badge>
+                              <span className="text-border-default">•</span>
+                              <div className="text-text-tertiary text-xs font-bold flex items-center gap-1">
+                                  <span className="material-symbols-outlined text-sm">schedule</span>
+                                  {resource.readTime}
+                              </div>
+                          </div>
+  
+                          <Heading as="h3" variant="h4" className="text-text-primary mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                              {resource.title}
+                          </Heading>
+                          
+                          <Text variant="body-sm" className="text-text-secondary mb-6 flex-grow line-clamp-3 leading-relaxed">
+                              {resource.excerpt}
+                          </Text>
+  
+                          <div className="pt-6 border-t border-border-subtle flex items-center justify-between">
+                              <Text variant="caption" className="text-text-tertiary font-medium">{resource.date}</Text>
+                              <Link 
+                                  to={`/posts/${resource.id}`} 
+                                  className="text-sm font-bold text-text-primary group-hover:text-primary flex items-center gap-1 transition-colors"
+                              >
+                                  Read Article <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                              </Link>
+                          </div>
+                      </div>
+                  </Card>
+              ))}
+              </div>
+          ) : (
+              <Card variant="outlined" className="text-center py-20 bg-surface-default border-dashed border-border-default">
+                  <span className="material-symbols-outlined text-6xl text-border-default mb-4">search_off</span>
+                  <Heading as="h3" variant="h3" className="text-text-primary mb-2">No resources found</Heading>
+                  <Text className="text-text-secondary mb-6">Try adjusting your search or filter criteria.</Text>
+                  <Button 
+                      variant="secondary"
+                      onClick={() => {setSelectedCategory('All'); setSearchQuery('')}}
+                      className="mx-auto"
+                  >
+                      Clear all filters
+                  </Button>
+              </Card>
+          )}
+        </Container>
       </section>
 
+
       {/* Featured / Newsletter CTA */}
-      <section className="container mx-auto px-4 md:px-6 mt-20">
-        <div className="bg-brand-gradient rounded-3xl p-8 md:p-16 text-center text-white relative overflow-hidden">
-            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-white opacity-10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-black opacity-10 rounded-full blur-3xl"></div>
-            
-            <div className="relative z-10 max-w-2xl mx-auto">
-                <h2 className="text-3xl md:text-4xl font-black mb-6">Want personalized coaching?</h2>
-                <p className="text-white/90 text-lg mb-8 font-medium">
-                    Our expert coaches can analyze your game and create a custom development plan just for you.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link to="/programs" className="px-8 py-4 bg-white text-slate-900 rounded-full font-bold hover:bg-slate-100 transition-colors shadow-lg">
-                        View Programs
-                    </Link>
-                    <Link to="/about" className="px-8 py-4 bg-black/20 text-white border border-white/30 rounded-full font-bold hover:bg-black/30 transition-colors backdrop-blur-sm">
-                        Meet the Coaches
-                    </Link>
-                </div>
-            </div>
-        </div>
+      <section className="mt-20">
+        <Container>
+          <Box className="bg-brand-gradient rounded-3xl p-8 md:p-16 text-center text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-white opacity-10 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-black opacity-10 rounded-full blur-3xl"></div>
+              
+              <div className="relative z-10 max-w-2xl mx-auto">
+                  <Heading as="h2" variant="h2" className="text-white mb-6">Want personalized coaching?</Heading>
+                  <Text variant="body-lg" className="text-white/90 mb-8 font-medium">
+                      Our expert coaches can analyze your game and create a custom development plan just for you.
+                  </Text>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <Button to="/programs" variant="secondary" size="lg" className="rounded-full shadow-lg">
+                          View Programs
+                      </Button>
+                      <Button to="/about" variant="outline" size="lg" className="rounded-full border-white/30 text-white hover:bg-white/10 backdrop-blur-sm">
+                          Meet the Coaches
+                      </Button>
+                  </div>
+              </div>
+          </Box>
+        </Container>
       </section>
     </div>
   );
