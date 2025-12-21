@@ -7,6 +7,8 @@ import TestimonialCard from '../components/home/TestimonialCard';
 import TickerItem from '../components/home/TickerItem';
 import SponsorLogo from '../components/home/SponsorLogo';
 
+import Button from '../components/shared/Button';
+
 export default function Home() {
   return (
     <>
@@ -34,13 +36,18 @@ export default function Home() {
             Elite coaching, data-driven training, and a proven pathway to the podium. Join the academy that builds champions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-            <button className="flex items-center justify-center h-14 px-8 rounded-full bg-brand-gradient text-white text-lg font-extrabold tracking-wide transition-all hover:scale-105 hover:shadow-xl shadow-pink-500/20 min-w-[200px]">
+            <Button variant="primary" size="lg" className="min-w-[200px] shadow-pink-500/20">
               REGISTER FOR TRYOUTS
-            </button>
-            <Link to="/programs" className="flex items-center justify-center h-14 px-8 rounded-full bg-white text-slate-900 border border-slate-200 text-lg font-bold tracking-wide transition-all hover:bg-slate-50 hover:border-slate-300 shadow-sm min-w-[200px]">
-              <span className="mr-2 material-symbols-outlined text-primary">play_circle</span>
+            </Button>
+            <Button 
+              to="/programs" 
+              variant="secondary" 
+              size="lg" 
+              className="min-w-[200px]"
+              leftIcon={<span className="material-symbols-outlined text-primary">play_circle</span>}
+            >
               EXPLORE PROGRAMS
-            </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -203,9 +210,9 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-6">READY TO ELEVATE YOUR GAME?</h2>
           <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto">Spaces for the upcoming Fall session are filling up fast. Secure your spot in the tryouts today.</p>
-          <button className="inline-flex items-center justify-center h-16 px-10 rounded-full bg-white text-primary text-xl font-extrabold tracking-wide transition-transform hover:scale-105 hover:shadow-2xl">
+          <Button variant="secondary" size="lg" className="hover:shadow-2xl hover:scale-105">
             JOIN THE ACADEMY
-          </button>
+          </Button>
           <div className="mt-8 flex justify-center gap-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
             <SponsorLogo image="https://lh3.googleusercontent.com/aida-public/AB6AXuAGOEsWMpqPc_-tr3iHvaENXGTYCnTx9JXGl2lP8rxh0huvLbIRxSEhae1thEJvh-d6i2AtFrgEIz-EaLrmHz4xldwARILcx0hW7c0VRFdhMNMMNGXL3GdyLVpG9VZI3_6KQMof9yDJUJviYhcKoeHOGkSLpI2mD3pGp7-_Z975UQE67is4X4uPtFAMiBZ3ZjijL0BZr4H4D1SCUHH3Yo5r5x17EEthKP6moKmsytd_pZpFZhry_SQy8vbdD6iSaTiRfWQL4Xt9NRQ" />
             <SponsorLogo image="https://lh3.googleusercontent.com/aida-public/AB6AXuDKjOlIQLriZmF-lbHVvpmZ-iqk-BA6R3J-Ohht19cfHUk2om9z7Yqu9Tpls9Fuld3Bg0gLA1B76J3KQauIjVfdhLHf9dfYrwTvEN1gjE2gai1lNeBJuEGWOQf9lfkU-pb-6GrIyUDY3vxEOOh4wmV4cY17y6g8J9S7EHaIbwnf0SSBAwDv3Eb5lP6GBQN3MF9YDgcKIvVya7lzlXMmoSx-TUptaAqvHt-HuHHkIWxXug0KO4Ua4wXvqCAWjlVZkWLa4ksXME0FvU4" />

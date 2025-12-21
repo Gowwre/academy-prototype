@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import Button from '../shared/Button';
 
 interface StepParticipantsProps {
   bookingData: any;
@@ -102,19 +103,19 @@ export default function StepParticipants({ bookingData, updateBookingData, onNex
 
       {/* Action Bar */}
       <div className="flex justify-between pt-4 border-t border-slate-100 mt-4">
-        <button 
+        <Button 
             onClick={onBack}
-            className="px-6 py-3 rounded-full font-bold text-slate-500 hover:bg-slate-100 transition-colors"
+            variant="ghost"
         >
             Back
-        </button>
-        <button 
+        </Button>
+        <Button 
             onClick={handleContinue}
             disabled={!formData.firstName || !formData.email}
-            className="px-8 py-3 rounded-full bg-brand-gradient text-white font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            variant="primary"
         >
             Review & Pay
-        </button>
+        </Button>
       </div>
     </div>
   );

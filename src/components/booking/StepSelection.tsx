@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import Button from '../shared/Button';
 
 interface StepSelectionProps {
   bookingData: any;
@@ -78,13 +79,13 @@ export default function StepSelection({ bookingData, updateBookingData, onNext }
 
       {/* Action Bar */}
       <div className="flex justify-end pt-4 border-t border-slate-100 mt-4">
-        <button 
+        <Button 
             onClick={handleContinue}
             disabled={!selectedSession}
-            className="px-8 py-3 rounded-full bg-brand-gradient text-white font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            variant="primary"
         >
             Continue to Details
-        </button>
+        </Button>
       </div>
     </div>
   );
