@@ -63,6 +63,13 @@ export default function Header() {
           </nav>
           
           <div className="flex items-center gap-4">
+            <Link 
+              to="/booking?program=private-lesson"
+              className="hidden md:flex items-center gap-2 text-primary font-bold text-sm px-4 py-2 rounded-full border-2 border-primary hover:bg-primary hover:text-white transition-all transform hover:scale-105"
+            >
+              <span className="material-symbols-outlined text-sm">event</span>
+              Book Private
+            </Link>
             <button 
               onClick={handleOpenLogin}
               className="hidden md:flex min-w-[100px] cursor-pointer items-center justify-center rounded-full h-10 px-6 bg-brand-gradient text-white text-sm font-bold transition-transform hover:scale-105 hover:shadow-lg"
@@ -97,15 +104,25 @@ export default function Header() {
                 {link.name}
               </Link>
             ))}
-             <button 
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                handleOpenLogin();
-              }}
-              className="w-full cursor-pointer items-center justify-center rounded-full h-10 px-6 bg-brand-gradient text-white text-sm font-bold"
-             >
-              Member Login
-            </button>
+             <div className="flex flex-col gap-2 pt-2">
+               <Link 
+                to="/booking?program=private-lesson"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center justify-center gap-2 rounded-full h-10 px-6 border-2 border-primary text-primary text-sm font-bold"
+               >
+                <span className="material-symbols-outlined text-sm">event</span>
+                Book Private
+               </Link>
+               <button 
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  handleOpenLogin();
+                }}
+                className="w-full cursor-pointer items-center justify-center rounded-full h-10 px-6 bg-brand-gradient text-white text-sm font-bold"
+               >
+                Member Login
+              </button>
+             </div>
           </nav>
         </div>
       )}
