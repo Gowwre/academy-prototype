@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import Button from '../shared/Button';
+import Button from '../design-system/Button';
 
 interface StepSelectionProps {
   bookingData: any;

@@ -27,10 +27,10 @@ export default function Button({
   const baseStyles = "inline-flex items-center justify-center rounded-full font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed";
   
   const variants = {
-    primary: "bg-brand-gradient text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-[0.98]",
-    secondary: "bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 active:scale-[0.98]",
-    outline: "border-2 border-primary text-primary hover:bg-primary hover:text-white transform hover:scale-105 active:scale-[0.98]",
-    ghost: "bg-transparent hover:bg-slate-100 text-slate-700 active:scale-[0.98]",
+    primary: "bg-brand-gradient text-text-on-primary shadow-lg hover:shadow-xl hover:scale-105 active:scale-[0.98]",
+    secondary: "bg-surface-default text-text-primary border border-border-default hover:bg-surface-highlight active:scale-[0.98]",
+    outline: "border-2 border-primary text-primary hover:bg-primary hover:text-text-on-primary transform hover:scale-105 active:scale-[0.98]",
+    ghost: "bg-transparent hover:bg-surface-highlight text-text-secondary active:scale-[0.98]",
     danger: "bg-red-500 text-white hover:bg-red-600 shadow-md hover:shadow-lg active:scale-[0.98]"
   };
 

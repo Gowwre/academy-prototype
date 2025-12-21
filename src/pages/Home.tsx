@@ -7,7 +7,9 @@ import TestimonialCard from '../components/home/TestimonialCard';
 import TickerItem from '../components/home/TickerItem';
 import SponsorLogo from '../components/home/SponsorLogo';
 
-import Button from '../components/shared/Button';
+import Button from '../components/design-system/Button';
+import Container from '../components/design-system/Container';
+import { Heading, Text } from '../components/design-system/Typography';
 
 export default function Home() {
   return (
@@ -23,18 +25,18 @@ export default function Home() {
           <div className="absolute inset-0 bg-white/70 backdrop-blur-[1px]"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-white/90"></div>
         </div>
-        <div className="container relative z-10 px-4 md:px-6 flex flex-col items-center text-center">
+        <Container className="relative z-10 flex flex-col items-center text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-primary/20 px-4 py-1.5 text-sm font-medium text-primary mb-6 backdrop-blur-sm border border-primary/20">
             <span className="material-symbols-outlined text-[18px]">verified</span>
             World-Class Coaching Staff
           </div>
-          <h1 className="max-w-4xl text-5xl font-black leading-tight tracking-tighter text-slate-900 sm:text-6xl md:text-7xl lg:text-8xl mb-6">
+          <Heading as="h1" variant="display" className="max-w-4xl mb-6 text-text-primary">
             FORGING THE NEXT <br/>
             <span className="text-transparent bg-clip-text bg-brand-gradient">GENERATION OF PROS</span>
-          </h1>
-          <p className="max-w-2xl text-lg text-slate-600 md:text-xl font-medium mb-10 leading-relaxed">
+          </Heading>
+          <Text variant="body-lg" className="max-w-2xl font-medium mb-10">
             Elite coaching, data-driven training, and a proven pathway to the podium. Join the academy that builds champions.
-          </p>
+          </Text>
           <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
             <Button variant="primary" size="lg" className="min-w-[200px] shadow-pink-500/20">
               REGISTER FOR TRYOUTS
@@ -49,7 +51,7 @@ export default function Home() {
               EXPLORE PROGRAMS
             </Button>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* News Ticker */}
@@ -64,24 +66,24 @@ export default function Home() {
       </div>
 
       {/* Stats Section */}
-      <section className="py-12 bg-gray-50 border-b border-gray-200">
-        <div className="container mx-auto px-4 md:px-6">
+      <section className="py-12 bg-surface-subtle border-b border-border-default">
+        <Container>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <StatItem value="500" suffix="k+" label="Scholarship Funding" />
             <StatItem value="12" label="National Titles" />
             <StatItem value="24" suffix="/7" label="Facility Access" />
             <StatItem value="100" suffix="%" label="Pro Certified Coaches" />
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Our Programs */}
-      <section className="py-20 bg-white relative">
-        <div className="container mx-auto px-4 md:px-6">
+      <section className="py-20 bg-surface-default relative">
+        <Container>
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Our Programs</h2>
-              <p className="text-slate-600 max-w-lg">Tailored training pathways designed to take athletes from foundational skills to professional competition.</p>
+              <Heading as="h2" variant="h2" className="text-text-primary mb-4">Our Programs</Heading>
+              <Text className="max-w-lg">Tailored training pathways designed to take athletes from foundational skills to professional competition.</Text>
             </div>
             <Link className="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all" to="/programs">
               View All Programs <span className="material-symbols-outlined">arrow_forward</span>
@@ -107,13 +109,13 @@ export default function Home() {
               badge="ALL AGES"
             />
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Alumni Spotlight */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-12 text-center">Alumni Success</h2>
+      <section className="py-20 bg-surface-default">
+        <Container>
+          <Heading as="h2" variant="h2" className="text-text-primary mb-12 text-center">Alumni Success</Heading>
           <div className="flex flex-col lg:flex-row gap-8 items-center">
             {/* Main Spotlight */}
             <div className="w-full lg:w-1/2 relative rounded-[2rem] overflow-hidden group">
@@ -125,18 +127,18 @@ export default function Home() {
                   <span className="font-bold text-sm tracking-wider uppercase">National Champion</span>
                 </div>
                 <h3 className="text-3xl md:text-4xl font-black text-white mb-2">JESSICA M.</h3>
-                <p className="text-lg text-gray-300 mb-6">Recruited by Top D1 University Program</p>
+                <p className="text-lg text-white/80 mb-6">Recruited by Top D1 University Program</p>
                 <div className="grid grid-cols-3 gap-4 border-t border-white/10 pt-4">
                   <div>
-                    <p className="text-xs text-gray-500 uppercase">Win Rate</p>
+                    <p className="text-xs text-white/60 uppercase">Win Rate</p>
                     <p className="text-xl font-bold text-white">92%</p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 uppercase">Titles</p>
+                    <p className="text-xs text-white/60 uppercase">Titles</p>
                     <p className="text-xl font-bold text-white">14</p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 uppercase">Rank</p>
+                    <p className="text-xs text-white/60 uppercase">Rank</p>
                     <p className="text-xl font-bold text-white">#3</p>
                   </div>
                 </div>
@@ -162,23 +164,23 @@ export default function Home() {
                 image="https://lh3.googleusercontent.com/aida-public/AB6AXuD2stjTW6-woAzmeYdRdn1OdMYH1XdgZuO0lWEfcc8gJtdkNjr8SVL0xwkdkevbo8HLgSDevH3FpRLyPm2269DYtAjIQ-2qCi7VIigicHE0Ssf_j_CrcF5aCTBkf9TbPS0iECH50p0ggynG30wUGloVfFKI5FGJ90qWSaIy-KBU2uAgdNpvz41RFiqmNGeSxBhki3LlgCaC9fc7GxvJ2KPajO-utOU1Yo-GWYtpV8gXWCaNAxINptoSHNAc169TU1FGVqUnT418tL0"
                 quote="The strategic analysis sessions are game-changing. Truly elite level."
               />
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 flex items-center justify-center group hover:bg-gray-50 transition-all cursor-pointer shadow-sm">
+              <div className="bg-surface-default p-6 rounded-2xl border border-border-default flex items-center justify-center group hover:bg-surface-subtle transition-all cursor-pointer shadow-sm">
                 <div className="text-center">
                   <div className="mx-auto h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2 group-hover:bg-primary group-hover:text-white transition-colors">
                     <span className="material-symbols-outlined">arrow_forward</span>
                   </div>
-                  <span className="text-sm font-bold text-slate-900">View All Alumni</span>
+                  <span className="text-sm font-bold text-text-primary">View All Alumni</span>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 md:px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-12 text-center">Voices from the Court</h2>
+      <section className="py-20 bg-surface-subtle">
+        <Container>
+          <Heading as="h2" variant="h2" className="text-text-primary mb-12 text-center">Voices from the Court</Heading>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <TestimonialCard 
               quote="As a parent investing in my child's future, I couldn't be happier. The disciplined approach and professional environment are unmatched."
@@ -199,7 +201,7 @@ export default function Home() {
               role="Semi-Pro Athlete"
             />
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* CTA Section */}
@@ -207,9 +209,9 @@ export default function Home() {
         <div className="absolute inset-0 bg-white/10 z-0"></div>
         <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-white/20 rounded-full blur-[100px]"></div>
         <div className="absolute -left-20 -top-20 w-96 h-96 bg-white/20 rounded-full blur-[100px]"></div>
-        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">READY TO ELEVATE YOUR GAME?</h2>
-          <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto">Spaces for the upcoming Fall session are filling up fast. Secure your spot in the tryouts today.</p>
+        <Container className="relative z-10 text-center">
+          <Heading as="h2" className="text-4xl md:text-5xl font-black text-white mb-6">READY TO ELEVATE YOUR GAME?</Heading>
+          <Text variant="body-lg" className="text-white/80 mb-10 max-w-2xl mx-auto">Spaces for the upcoming Fall session are filling up fast. Secure your spot in the tryouts today.</Text>
           <Button variant="secondary" size="lg" className="hover:shadow-2xl hover:scale-105">
             JOIN THE ACADEMY
           </Button>
@@ -218,7 +220,7 @@ export default function Home() {
             <SponsorLogo image="https://lh3.googleusercontent.com/aida-public/AB6AXuDKjOlIQLriZmF-lbHVvpmZ-iqk-BA6R3J-Ohht19cfHUk2om9z7Yqu9Tpls9Fuld3Bg0gLA1B76J3KQauIjVfdhLHf9dfYrwTvEN1gjE2gai1lNeBJuEGWOQf9lfkU-pb-6GrIyUDY3vxEOOh4wmV4cY17y6g8J9S7EHaIbwnf0SSBAwDv3Eb5lP6GBQN3MF9YDgcKIvVya7lzlXMmoSx-TUptaAqvHt-HuHHkIWxXug0KO4Ua4wXvqCAWjlVZkWLa4ksXME0FvU4" />
             <SponsorLogo image="https://lh3.googleusercontent.com/aida-public/AB6AXuA5PvO0LXL1q30NKsVgm2LPFxKkR8w-3K4GVQZvVxD_K4M2n2X6rzfEIycztGPZL8c-z_TML89KkJk11RlxNOC3GVYmEUQFU79P5kJxkW3WrYi6_2MGbh5742DSv_W3I2DtLnW7SeKRyazf3QcbMXqtTMslHXqVTs4U3GYQ9LNOrChZtN45kBzGsAQSveINSz_c6HnqKPkJmsCjxFLMXV6LfRteB9_JdOBpfv6YlM48vRgdh07uG54EA95_hS7vU6WwP5-x-52Qp0k" />
           </div>
-        </div>
+        </Container>
       </section>
     </>
   );

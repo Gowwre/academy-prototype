@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
-import Button from '../shared/Button';
-import Modal from '../shared/Modal';
+import Button from '../design-system/Button';
+import Modal from '../design-system/Modal';
+import Input from '../design-system/Input';
 
 interface RegisterModalProps {
   isOpen: boolean;
@@ -70,43 +71,29 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }: Regi
         )}
 
         <div>
-           <label className="block text-sm font-semibold text-slate-700 mb-1" htmlFor="name">
-            Full Name
-          </label>
-          <div className="relative">
-            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">
-              badge
-            </span>
-            <input
+            <Input
               id="name"
+              label="Full Name"
               type="text"
               required
-              className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-4 text-sm outline-none transition-all focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/5"
+              leftIcon={<span className="material-symbols-outlined text-xl">badge</span>}
               placeholder="John Doe"
               value={formData.name}
               onChange={handleChange}
             />
-          </div>
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-slate-700 mb-1" htmlFor="email">
-            Email Address
-          </label>
-          <div className="relative">
-            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">
-              mail
-            </span>
-            <input
+            <Input
               id="email"
+              label="Email Address"
               type="email"
               required
-              className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-4 text-sm outline-none transition-all focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/5"
+              leftIcon={<span className="material-symbols-outlined text-xl">mail</span>}
               placeholder="name@example.com"
               value={formData.email}
               onChange={handleChange}
             />
-          </div>
         </div>
 
         <div>

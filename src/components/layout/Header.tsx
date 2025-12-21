@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import DJoyLogo from '../shared/DJoyLogo';
-import Button from '../shared/Button';
+import Button from '../design-system/Button';
 import LoginModal from '../auth/LoginModal';
 import RegisterModal from '../auth/RegisterModal';
 

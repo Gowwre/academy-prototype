@@ -1,11 +1,12 @@
 
 import { Link } from 'react-router-dom';
 import DJoyLogo from '../shared/DJoyLogo';
+import Container from '../design-system/Container';
 
 export default function Footer() {
   return (
     <footer className="bg-brand-gradient pt-16 pb-8">
-      <div className="container mx-auto px-4 md:px-6">
+      <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div>
             <div className="flex items-center mb-6">
@@ -66,7 +67,8 @@ export default function Footer() {
             <Link className="text-white/60 hover:text-white text-xs transition-colors" to="/terms-of-service">Terms of Service</Link>
           </div>
         </div>
-      </div>
+
+      </Container>
     </footer>
   );
 }

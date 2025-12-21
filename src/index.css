@@ -7,7 +7,7 @@
 
 @layer base {
   body {
-    @apply bg-white font-display text-slate-900 antialiased overflow-x-hidden;
+    @apply bg-background-default font-display text-text-primary antialiased overflow-x-hidden;
   }
 }
 

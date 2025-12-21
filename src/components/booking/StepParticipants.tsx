@@ -1,6 +1,8 @@
 
 import { useState } from 'react';
-import Button from '../shared/Button';
+import Button from '../design-system/Button';
+import Input from '../design-system/Input';
+import Select from '../design-system/Select';
 
 interface StepParticipantsProps {
   bookingData: any;
@@ -41,50 +43,51 @@ export default function StepParticipants({ bookingData, updateBookingData, onNex
         </h3>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="flex flex-col gap-2">
-                <label className="text-sm font-bold text-slate-700">First Name</label>
-                <input 
-                    type="text" 
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    className="p-3 border border-slate-200 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-                    placeholder="e.g. John"
-                />
-            </div>
-            <div className="flex flex-col gap-2">
-                <label className="text-sm font-bold text-slate-700">Last Name</label>
-                <input 
-                    type="text" 
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    className="p-3 border border-slate-200 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-                    placeholder="e.g. Doe"
-                />
-            </div>
-            <div className="flex flex-col gap-2">
-                <label className="text-sm font-bold text-slate-700">Email Address</label>
-                <input 
-                    type="email" 
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="p-3 border border-slate-200 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-                    placeholder="john@example.com"
-                />
-            </div>
-            <div className="flex flex-col gap-2">
-                <label className="text-sm font-bold text-slate-700">Phone Number</label>
-                <input 
-                    type="tel" 
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="p-3 border border-slate-200 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-                    placeholder="+1 (555) 000-0000"
-                />
-            </div>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 mb-6">
+        <h3 className="font-bold text-lg mb-4 text-slate-800">Primary Contact</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Input 
+            label="First Name"
+            placeholder="John" 
+            value={formData.firstName}
+            onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+          />
+          <Input 
+             label="Last Name"
+            placeholder="Doe"
+             value={formData.lastName}
+             onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+          />
+          <Input 
+             label="Email Address"
+             type="email"
+            placeholder="john@example.com"
+             value={formData.email}
+             onChange={(e) => setFormData({...formData, email: e.target.value})}
+            className="md:col-span-2"
+          />
+          <Input 
+             label="Phone Number"
+             type="tel"
+            placeholder="(555) 123-4567"
+             value={formData.phone}
+             onChange={(e) => setFormData({...formData, phone: e.target.value})}
+            className="md:col-span-2"
+          />
+          <Select
+            label="Skill Level"
+            name="skillLevel"
+            value={formData.skillLevel}
+            onChange={handleChange}
+            className="md:col-span-2"
+            options={[
+                { value: "Beginner", label: "Beginner (1.0 - 2.5)" },
+                { value: "Intermediate", label: "Intermediate (3.0 - 4.0)" },
+                { value: "Advanced", label: "Advanced (4.5+)" }
+            ]}
+          />
+        </div>
+      </div>
              <div className="flex flex-col gap-2">
                 <label className="text-sm font-bold text-slate-700">Skill Level</label>
                 <select 

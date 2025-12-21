@@ -1,5 +1,5 @@
 import type { StaffMember } from '../../data/staff';
-import Modal from '../shared/Modal';
+import Modal from '../design-system/Modal';
 
 interface StaffDetailModalProps {
   staff: StaffMember | null;

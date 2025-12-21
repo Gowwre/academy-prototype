@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
-import Button from '../shared/Button';
-import Modal from '../shared/Modal';
+import Button from '../design-system/Button';
+import Modal from '../design-system/Modal';
+import Input from '../design-system/Input';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -41,28 +42,21 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
 
       <form onSubmit={handleSubmit} className="mt-8 space-y-4">
         <div>
-          <label className="block text-sm font-semibold text-slate-700 mb-1" htmlFor="email">
-            Email Address
-          </label>
-          <div className="relative">
-            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">
-              mail
-            </span>
-            <input
-              id="email"
-              type="email"
-              required
-              className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-4 text-sm outline-none transition-all focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/5"
-              placeholder="name@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
+          <Input
+            id="email"
+            type="email"
+            label="Email Address"
+            required
+            placeholder="name@example.com"
+            leftIcon={<span className="material-symbols-outlined text-xl">mail</span>}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
 
         <div>
           <div className="flex items-center justify-between mb-1">
-            <label className="block text-sm font-semibold text-slate-700" htmlFor="password">
+            <label className="block text-sm font-bold text-text-secondary" htmlFor="password">
               Password
             </label>
             <button type="button" className="text-xs font-bold text-primary hover:underline">
@@ -70,14 +64,14 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
             </button>
           </div>
           <div className="relative">
-            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">
+            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-tertiary text-xl">
               lock
             </span>
             <input
               id="password"
               type={showPassword ? 'text' : 'password'}
               required
-              className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-11 text-sm outline-none transition-all focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/5"
+              className="w-full rounded-xl border border-border-default bg-surface-subtle py-3 pl-11 pr-11 text-sm outline-none transition-all focus:border-primary focus:bg-surface-default focus:ring-4 focus:ring-primary/5 placeholder:text-text-tertiary text-text-primary"
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -85,7 +79,7 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-text-tertiary hover:text-text-secondary transition-colors"
             >
               <span className="material-symbols-outlined text-xl">
                 {showPassword ? 'visibility_off' : 'visibility'}
